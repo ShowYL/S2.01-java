@@ -33,6 +33,17 @@ public class Article {
 	public void setQuantitéEnStock(int quantitéEnStock) {
 		this.quantitéEnStock = quantitéEnStock;
 	}
+	
+	public void présenterQuantité(int quantité) throws IllegalArgumentException{
+		if (this.quantitéEnStock - quantité < 0) {
+			throw new IllegalArgumentException("Quantité voulu trop grande...");
+		}
+		this.quantitéEnStock -= quantité;
+	}
+	
+	public void rendreQuantité(int quantité) {
+		this.quantitéEnStock += quantité;
+	}
 
 	@Override
 	public String toString() {
@@ -43,6 +54,10 @@ public class Article {
 			return this.fromage.getDésignation() + ", " + this.clé
 			        + ", Prix TTC : " + this.getPrixTTC() + " €";
 		}
+	}
+	
+	public String toStringIHM() {
+		return "";
 	}
 
 	public String toStringAvecStock() {
