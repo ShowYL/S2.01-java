@@ -25,6 +25,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+import javax.swing.*;
 
 public class FEN_Description extends JFrame {
 
@@ -164,11 +168,20 @@ public class FEN_Description extends JFrame {
 		panel_footer.add(panel_validation_annulation);
 		
 		JButton btn_add = new JButton("Ajouter au panier");
+		btn_add.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_add.setBackground(new Color(0, 128, 0));
 		btn_add.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_validation_annulation.add(btn_add);
 		
 		JButton btn_cancel = new JButton("Annuler");
+		btn_cancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btn_cancel.setBackground(new Color(255, 0, 0));
 		panel_validation_annulation.add(btn_cancel);
