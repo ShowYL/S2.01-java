@@ -32,6 +32,8 @@ import javax.swing.ImageIcon;
 import modele.*;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class FEN_Accueil {
 
@@ -116,16 +118,24 @@ public class FEN_Accueil {
 		}
 		
 		JList Centre_liste = new JList(listefromage.toArray(new String[0]));
+		Centre_liste.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (e.getClickCount() == 2) { 
+					int index = Centre_liste.locationToIndex(e.getPoint()); 
+                   	String selectedItem = listefromage.get(index);
+					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem));
+                   	fenDescription.setVisible(true);
+                }
+			}
+		});
 		Centre_liste.setBackground(Color.LIGHT_GRAY);
-		frame.getContentPane().add(Centre_liste, BorderLayout.CENTER);
+		frame.getContentPane().add(new JScrollPane(Centre_liste), BorderLayout.CENTER);
 		JPanel Header = new JPanel();
 		Header.setBackground(Color.BLACK);
 		frame.getContentPane().add(Header, BorderLayout.NORTH);
 		Header.setLayout(new BorderLayout(0, 0));
-		
-		JScrollPane scrollPane = new JScrollPane(Centre_liste);
-	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+	
 
 		JPanel Titre_page = new JPanel();
 		Titre_page.setBackground(new Color(0, 0, 0));
