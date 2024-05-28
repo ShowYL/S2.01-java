@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-public class FEN_Panier {
+public class FEN_Panier{
 
 	private JFrame frame;
 	private JTable Tableau_Panier;
@@ -102,6 +102,11 @@ public class FEN_Panier {
 		Bnt_rec_panier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				float prixTotal = 0.0F;
+				for (int i = 0 ; i < Tableau_Panier.getRowCount();i++) {
+					prixTotal += (float) Tableau_Panier.getValueAt(i, 3) * (float) Tableau_Panier.getValueAt(i, 4);
+				}
+				
 			}
 		});
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -259,6 +264,13 @@ public class FEN_Panier {
 		panel_BntVA.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton Button_ValiderPanier = new JButton("Valider mon panier");
+		Button_ValiderPanier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FEN_Coordonnee window = new FEN_Coordonnee();
+				window.getFrame().setVisible(true);
+			}
+		});
 		Button_ValiderPanier.setBackground(new Color(174, 221, 148));
 		panel_BntVA.add(Button_ValiderPanier);
 		

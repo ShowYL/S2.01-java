@@ -49,7 +49,10 @@ public class FEN_Coordonnee {
 	public FEN_Coordonnee() {
 		initialize();
 	}
-
+	
+	public JFrame getFrame() {
+		return this.frame;
+	}
 	/**
 	 * Initialize the contents of the frame.
 	 */
