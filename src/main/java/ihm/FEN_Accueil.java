@@ -16,8 +16,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-import modele.Fromages;
-
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -25,11 +23,15 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Rectangle;
 import java.awt.Component;
 import javax.swing.ImageIcon;
 import modele.*;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class FEN_Accueil {
 
@@ -120,6 +122,7 @@ public class FEN_Accueil {
 		Header.setBackground(Color.BLACK);
 		frame.getContentPane().add(Header, BorderLayout.NORTH);
 		Header.setLayout(new BorderLayout(0, 0));
+		
 		JScrollPane scrollPane = new JScrollPane(Centre_liste);
 	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
@@ -158,6 +161,36 @@ public class FEN_Accueil {
 		Panier.setBackground(new Color(254, 251, 100));
 		Panier.setAlignmentX(1.0f);
 		Bouton_panier.add(Panier);
+		
+		
+		Choix_lait.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				int i = Choix_lait.getSelectedIndex();
+				GenerationFromages generation=new GenerationFromages();
+				Fromages tousfromages=generation.générationBaseFromages();
+				List<Fromage> listefromages=new LinkedList<Fromage>();
+				switch(i) {
+					case 0:
+						listefromages=tousfromages.getFromages();
+						break;
+					case 1:
+						listefromages=tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Vache"));
+						break;
+				    case 2: 
+				    	listefromages=tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Chèvre"));
+				    	break;
+				    case 3:
+				    	listefromages=tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Brebis"));
+				    	break;
+				}
+				ArrayList<String> tabfromage=new ArrayList<>();
+				for(Fromage f : listefromages) {
+					tabfromage.add(f.getDésignation());
+				}
+				
+				Centre_liste.setListData(tabfromage.toArray(new String[0]));
+			}
+		});
 	}
 
 }
