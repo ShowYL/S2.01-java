@@ -66,7 +66,7 @@ public class FEN_Coordonnee {
 	    frame.getContentPane().setLayout(new BorderLayout(0, 0));
 	    
 	    JPanel panelNord = new JPanel();
-	    panelNord.setBackground(new Color(0, 0, 0));
+	    panelNord.setBackground(Constantes.NOIR);
 	    frame.getContentPane().add(panelNord, BorderLayout.NORTH);
 	    
 	    JLabel lblNewLabel = new JLabel("Vos Coordonnées");
@@ -84,7 +84,7 @@ public class FEN_Coordonnee {
         Image resizedImage = img.getScaledInstance(largueur/8, hauteur/8,  java.awt.Image.SCALE_SMOOTH);  
         icon = new ImageIcon(resizedImage);
 	    lblNewLabel.setIcon(icon);
-	    lblNewLabel.setForeground(new Color(255, 255, 255));
+	    lblNewLabel.setForeground(Constantes.BLANC);
 	    panelNord.add(lblNewLabel);
 	    
 	    JPanel panelCentre = new JPanel();
@@ -112,12 +112,12 @@ public class FEN_Coordonnee {
 	    
 	    JPanel panelCentreEstNord = new JPanel();
 	    panelCentreEst.add(panelCentreEstNord, BorderLayout.NORTH);
-	    panelCentreEstNord.setBorder(BorderFactory.createLineBorder(Color.yellow, 5));
+	    panelCentreEstNord.setBorder(BorderFactory.createLineBorder(Constantes.JAUNE, 5));
 	    panelCentreEstNord.setLayout(new BorderLayout(0, 0));
 	    
 	    JLabel lblNewLabel_1 = new JLabel("Moyen de paiement");
+	    lblNewLabel_1.setBackground(Constantes.BLANC);
 	    panelCentreEstNord.add(lblNewLabel_1, BorderLayout.NORTH);
-	    
 	    JPanel panelCentreEstNordSud = new JPanel();
 	    panelCentreEstNord.add(panelCentreEstNordSud, BorderLayout.SOUTH);
 	    
@@ -128,30 +128,36 @@ public class FEN_Coordonnee {
 	    Image img2 = icon2.getImage();
         Image resizedImage2 = img2.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
         icon2 = new ImageIcon(resizedImage2);
-	    JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
+	    JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit           ");
+	    rdbtnNewRadioButton.setBackground(Constantes.BLANC);
 	    JLabel imageCB = new JLabel(icon2);
 	    panelCB.add(rdbtnNewRadioButton);
 	    panelCB.add(imageCB);
+	    panelCB.setBackground(Constantes.BLANC);
 	    panelCentreEstNordSud.add(panelCB);
 	    JPanel panelPaypal = new JPanel();
 	    ImageIcon icon3 = new ImageIcon("src\\main\\resources\\images\\icons\\Paypal.png");
 	    Image img3 = icon3.getImage();
         Image resizedImage3 = img3.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
         icon3 = new ImageIcon(resizedImage3);
-	    JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Carte de crédit");
+	    JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Paypal                       ");
+	    rdbtnNewRadioButton2.setBackground(Constantes.BLANC);
 	    JLabel imagePaypal = new JLabel(icon3);
 	    panelPaypal.add(rdbtnNewRadioButton2);
 	    panelPaypal.add(imagePaypal);
+	    panelPaypal.setBackground(Constantes.BLANC);
 	    panelCentreEstNordSud.add(panelPaypal);
 	    JPanel panelCheque = new JPanel();
 	    ImageIcon icon4 = new ImageIcon("src\\main\\resources\\images\\icons\\Cheque.png");
 	    Image img4 = icon4.getImage();
         Image resizedImage4 = img4.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
         icon4 = new ImageIcon(resizedImage4);
-	    JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Carte de crédit");
+	    JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Payement par chèque");
+	    rdbtnNewRadioButton3.setBackground(Constantes.BLANC);
 	    JLabel imageCheque = new JLabel(icon4);
 	    panelCheque.add(rdbtnNewRadioButton3);
 	    panelCheque.add(imageCheque);
+	    panelCheque.setBackground(Constantes.BLANC);
 	    panelCentreEstNordSud.add(panelCheque);
 	    ButtonGroup payementGroup = new ButtonGroup();
 	    payementGroup.add(rdbtnNewRadioButton);
@@ -160,19 +166,22 @@ public class FEN_Coordonnee {
 	    
 	    JPanel panelCentreEstSud = new JPanel();
 	    panelCentreEst.add(panelCentreEstSud, BorderLayout.SOUTH);
-	    panelCentreEstSud.setBorder(BorderFactory.createLineBorder(Color.yellow, 5));
+	    panelCentreEstSud.setBorder(BorderFactory.createLineBorder(Constantes.JAUNE, 5));
 	    panelCentreEstSud.setLayout(new BorderLayout(0, 0));
 	    
 	    JLabel lblNewLabel_2 = new JLabel("Abonnement à notre NewsLetter");
 	    panelCentreEstSud.add(lblNewLabel_2, BorderLayout.NORTH);
 	    
 	    JPanel panelCentreEstSudSud = new JPanel();
+	    panelCentreEstSudSud.setBackground(Constantes.BLANC);
 	    panelCentreEstSud.add(panelCentreEstSudSud, BorderLayout.SOUTH);
 	    
 	    final ButtonGroup newsLetter = new ButtonGroup();
 	    JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Oui");
+	    rdbtnNewRadioButton_1.setBackground(Constantes.BLANC);
 	    panelCentreEstSudSud.add(rdbtnNewRadioButton_1);
 	    JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Non");
+	    rdbtnNewRadioButton_2.setBackground(Constantes.BLANC);
 	    panelCentreEstSudSud.add(rdbtnNewRadioButton_2);
 	    newsLetter.add(rdbtnNewRadioButton_1);
 	    newsLetter.add(rdbtnNewRadioButton_2);
@@ -188,11 +197,11 @@ public class FEN_Coordonnee {
 	    panelSud.add(panel, BorderLayout.EAST);
 	    
 	    JButton btnNewButton = new JButton("Valider");
-	    btnNewButton.setBackground(new Color(128, 255, 0));
+	    btnNewButton.setBackground(Constantes.VERT);
 	    panel.add(btnNewButton);
 	    
 	    JButton btnNewButton_1 = new JButton("Annuler");
-	    btnNewButton_1.setBackground(new Color(255, 0, 0));
+	    btnNewButton_1.setBackground(Constantes.ROUGE);
 	    panel.add(btnNewButton_1);
 	    
 	    btnNewButton_1.addMouseListener(new MouseAdapter() {
