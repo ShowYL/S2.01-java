@@ -20,6 +20,11 @@ import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JTextArea;
 import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Dimension;
+import javax.swing.JScrollPane;
 
 public class FEN_Description extends JFrame {
 
@@ -47,7 +52,7 @@ public class FEN_Description extends JFrame {
 	 */
 	public FEN_Description() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 722, 407);
+		setBounds(100, 100, 685, 407);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -78,14 +83,24 @@ public class FEN_Description extends JFrame {
 		panel_description.setLayout(new BoxLayout(panel_description, BoxLayout.Y_AXIS));
 		
 		JLabel titre_description = new JLabel("Description");
+		titre_description.setHorizontalAlignment(SwingConstants.CENTER);
 		titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		panel_description.add(titre_description);
 		
 		JTextArea description = new JTextArea();
-		description.setBackground(new Color(255, 255, 255));
-		description.setLineWrap(false);
-		description.setText("Lorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli");
-		panel_description.add(description);
+		description.setSelectionColor(new Color(0, 0, 0));
+		description.setForeground(new Color(0, 0, 0));
+		description.setText("TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest");
+		description.setLineWrap(true);
+		description.setWrapStyleWord(true);
+		description.setEnabled(false);
+		
+		JScrollPane scrollPane = new JScrollPane(description);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(200, 100));
+        panel_description.add(scrollPane);
+
 		
 		JPanel panel_footer = new JPanel();
 		panel_footer.setBackground(new Color(0, 0, 0));
@@ -96,7 +111,17 @@ public class FEN_Description extends JFrame {
 		panel_prix.setBackground(new Color(0, 0, 0));
 		panel_footer.add(panel_prix);
 		
-		JLabel euro_logo_1 = new JLabel("E");
+		JLabel euro_logo_1 = new JLabel("");
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int hauteur = (int) (screenSize.height * 0.2);  // 70% de la hauteur de l'écran
+		int largueur = (int) (screenSize.width * 0.2);  // 70% de la largueur de l'écran
+		
+		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Euro.png");
+		Image img = icon.getImage();
+		Image resizedImage = img.getScaledInstance(largueur/8, hauteur/6,  java.awt.Image.SCALE_SMOOTH);  
+		icon = new ImageIcon(resizedImage);
+		
+		euro_logo_1.setIcon(icon);
 		euro_logo_1.setForeground(Color.WHITE);
 		euro_logo_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		panel_prix.add(euro_logo_1);
