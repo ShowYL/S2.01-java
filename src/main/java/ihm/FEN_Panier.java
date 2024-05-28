@@ -272,6 +272,7 @@ public class FEN_Panier{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				FEN_Coordonnee window = new FEN_Coordonnee();
+				frame.setVisible(false);
 				window.getFrame().setVisible(true);
 			}
 		});
