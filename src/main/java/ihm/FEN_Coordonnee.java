@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
+
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -68,6 +70,8 @@ public class FEN_Coordonnee {
 
 	    int hauteur = (int) (screenSize.height * 0.7);  // 70% de la hauteur de l'écran
 	    int largueur = (int) (screenSize.width * 0.7);  // 70% de la largueur de l'écran
+	    frame.setSize(largueur,hauteur);
+        frame.setLocationRelativeTo(null);
 	    
 	    ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Coordonnee.png");
 	    Image img = icon.getImage();
@@ -111,12 +115,21 @@ public class FEN_Coordonnee {
 	    panelCentreEstNord.add(panelCentreEstNordSud, BorderLayout.SOUTH);
 	    panelCentreEstNordSud.setLayout(new GridLayout(3,2));
 	    
+	    ImageIcon icon2 = new ImageIcon("src\\main\\resources\\images\\icons\\CB.png");
+	    Image img2 = icon2.getImage();
+        Image resizedImage2 = img2.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
+        icon2 = new ImageIcon(resizedImage2);
+	    final ButtonGroup payementGroup = new ButtonGroup();
 	    JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
+	    rdbtnNewRadioButton.setIcon(icon2);
 	    panelCentreEstNordSud.add(rdbtnNewRadioButton);
 	    JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Paypal");
 	    panelCentreEstNordSud.add(rdbtnNewRadioButton2);
 	    JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Paiement par chèque");
 	    panelCentreEstNordSud.add(rdbtnNewRadioButton3);
+	    payementGroup.add(rdbtnNewRadioButton);
+	    payementGroup.add(rdbtnNewRadioButton2);
+	    payementGroup.add(rdbtnNewRadioButton3);
 	    
 	    JPanel panelCentreEstSud = new JPanel();
 	    panelCentreEst.add(panelCentreEstSud, BorderLayout.SOUTH);
@@ -129,11 +142,13 @@ public class FEN_Coordonnee {
 	    JPanel panelCentreEstSudSud = new JPanel();
 	    panelCentreEstSud.add(panelCentreEstSudSud, BorderLayout.SOUTH);
 	    
+	    final ButtonGroup newsLetter = new ButtonGroup();
 	    JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Oui");
 	    panelCentreEstSudSud.add(rdbtnNewRadioButton_1);
-	    
 	    JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Non");
 	    panelCentreEstSudSud.add(rdbtnNewRadioButton_2);
+	    newsLetter.add(rdbtnNewRadioButton_1);
+	    newsLetter.add(rdbtnNewRadioButton_2);
 	    
 	    
 	    JPanel panelSud = new JPanel();
