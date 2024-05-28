@@ -1,4 +1,7 @@
 package ihm;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.Dimension;
 
 import java.awt.EventQueue;
 
@@ -7,6 +10,7 @@ import java.awt.BorderLayout;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import javax.swing.JList;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -20,10 +24,12 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Rectangle;
 import java.awt.Component;
 import javax.swing.ImageIcon;
+import modele.*;
 
 public class FEN_Accueil {
 
@@ -51,57 +57,85 @@ public class FEN_Accueil {
 	public FEN_Accueil() {
 		initialize();
 	}
-
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int hauteur = (int) (screenSize.height * 0.7);  // 70% de la hauteur de l'écran	    
+		int largueur = (int) (screenSize.width * 0.7);  // 70% de la largueur de l'écran
+		
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		
+		frame.setSize(largueur,hauteur);
+        frame.setLocationRelativeTo(null);
+
 		JPanel Footer = new JPanel();
 		Footer.setBackground(Color.BLACK);
 		frame.getContentPane().add(Footer, BorderLayout.SOUTH);
 		Footer.setLayout(new BorderLayout(0, 0));
-		
+
 		JPanel Boite_choix_lait = new JPanel();
 		Boite_choix_lait.setBackground(Color.BLACK);
-		Footer.add(Boite_choix_lait, BorderLayout.WEST);
+		Footer.add(Boite_choix_lait, BorderLayout.CENTER);
 		Boite_choix_lait.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
+
 		JLabel Logo_vache = new JLabel("");
+		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Tetedevache.png");
+		Image img = icon.getImage();
+		Image resizedImage = img.getScaledInstance(largueur/30, hauteur/15,  java.awt.Image.SCALE_SMOOTH);  
+		icon = new ImageIcon(resizedImage);
+		Logo_vache.setIcon(icon);
 		Boite_choix_lait.add(Logo_vache);
-		
+
 		JComboBox Choix_lait = new JComboBox();
 		Choix_lait.setForeground(Color.WHITE);
 		Choix_lait.setBackground(Color.BLACK);
-		Choix_lait.setBorder(new LineBorder(new Color(239, 224, 46)));
-		Choix_lait.setModel(new DefaultComboBoxModel(new String[] {"Tous les laits", "Lait de vache", "Lait de chèvre", "Lait de brebis"}));
+		Choix_lait.setBorder(new LineBorder(new Color(254, 251, 100)));
+		Choix_lait.setModel(new DefaultComboBoxModel(new String[] { "Tous les laits", "Lait de vache", "Lait de chèvre", "Lait de brebis" }));
 		Boite_choix_lait.add(Choix_lait);
 		
-		JButton Est_Button = new JButton("Quitter");
-		Est_Button.setBackground(new Color(255, 128, 128));
-		Footer.add(Est_Button, BorderLayout.EAST);
+		JPanel Bouton_quitter_boite = new JPanel();
+		Bouton_quitter_boite.setBackground(new Color(0, 0, 0));
+		Footer.add(Bouton_quitter_boite, BorderLayout.EAST);
 		
-		JList Centre_liste = new JList();
+		JButton Quitter_Button = new JButton("Quitter");
+		Quitter_Button.setBackground(new Color(255, 138, 132));
+		Bouton_quitter_boite.add(Quitter_Button);
+
+		GenerationFromages generation=new GenerationFromages();
+		Fromages tousfromages=generation.générationBaseFromages();
+		ArrayList<String> listefromage=new ArrayList<>();
+		for(Fromage f : tousfromages.getFromages()) {
+			listefromage.add(f.getDésignation());
+		}
+		
+		JList Centre_liste = new JList(listefromage.toArray(new String[0]));
 		Centre_liste.setBackground(Color.LIGHT_GRAY);
 		frame.getContentPane().add(Centre_liste, BorderLayout.CENTER);
-		
 		JPanel Header = new JPanel();
 		Header.setBackground(Color.BLACK);
 		frame.getContentPane().add(Header, BorderLayout.NORTH);
 		Header.setLayout(new BorderLayout(0, 0));
-		
+		JScrollPane scrollPane = new JScrollPane(Centre_liste);
+	    scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+	    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+
 		JPanel Titre_page = new JPanel();
 		Titre_page.setBackground(new Color(0, 0, 0));
-		Header.add(Titre_page, BorderLayout.WEST);
-		
+		Header.add(Titre_page, BorderLayout.CENTER);
+
 		JLabel Logo_fromage = new JLabel("");
-		Logo_fromage.setIcon(new ImageIcon("src\\main\\resources\\images\\icons\\Cheese.png"));
+		icon = new ImageIcon("src\\main\\resources\\images\\icons\\Cheese.png");
+		img = icon.getImage();
+		resizedImage = img.getScaledInstance(largueur/20, hauteur/10,  java.awt.Image.SCALE_SMOOTH);  
+		icon = new ImageIcon(resizedImage);
+		Logo_fromage.setIcon(icon);
 		Titre_page.add(Logo_fromage);
-		
+
 		JLabel Titre = new JLabel("Nos fromages");
 		Titre.setOpaque(true);
 		Titre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -109,15 +143,19 @@ public class FEN_Accueil {
 		Titre.setFont(new Font("Alef", Font.PLAIN, 25));
 		Titre.setBackground(Color.BLACK);
 		Titre_page.add(Titre);
-		
+
 		JPanel Bouton_panier = new JPanel();
 		Bouton_panier.setBackground(new Color(0, 0, 0));
 		Header.add(Bouton_panier, BorderLayout.EAST);
-		
+
 		JButton Panier = new JButton("XX,XX€");
-		Panier.setHorizontalTextPosition(SwingConstants.RIGHT);
+		icon = new ImageIcon("src\\main\\resources\\images\\icons\\Caddie.png");
+		img = icon.getImage();
+		resizedImage = img.getScaledInstance(largueur/30, hauteur/15,  java.awt.Image.SCALE_SMOOTH);  
+		icon = new ImageIcon(resizedImage);
+		Panier.setIcon(icon);
 		Panier.setHorizontalAlignment(SwingConstants.RIGHT);
-		Panier.setBackground(new Color(239, 224, 46));
+		Panier.setBackground(new Color(254, 251, 100));
 		Panier.setAlignmentX(1.0f);
 		Bouton_panier.add(Panier);
 	}

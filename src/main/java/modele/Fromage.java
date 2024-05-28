@@ -50,8 +50,7 @@ public class Fromage implements Comparable<Fromage> {
 
 	@Override
 	public String toString() {
-		return this.getDésignation() + ", Fromage au lait de "
-		        + this.typeFromage.getTypeDeLait();
+		return this.getDésignation() + ", Fromage au lait de " + this.typeFromage.getTypeDeLait();
 	}
 
 	public void addArticle(String clé, float prixTTC) {

@@ -33,14 +33,14 @@ public class Article {
 	public void setQuantitéEnStock(int quantitéEnStock) {
 		this.quantitéEnStock = quantitéEnStock;
 	}
-	
-	public void présenterQuantité(int quantité) throws IllegalArgumentException{
+
+	public void présenterQuantité(int quantité) throws IllegalArgumentException {
 		if (this.quantitéEnStock - quantité < 0) {
 			throw new IllegalArgumentException("Quantité voulu trop grande...");
 		}
 		this.quantitéEnStock -= quantité;
 	}
-	
+
 	public void rendreQuantité(int quantité) {
 		this.quantitéEnStock += quantité;
 	}
@@ -48,28 +48,24 @@ public class Article {
 	@Override
 	public String toString() {
 		if (this.clé.equals("")) {
-			return this.fromage.getDésignation() + ", Prix TTC : "
-			        + this.getPrixTTC() + " €";
+			return this.fromage.getDésignation() + ", Prix TTC : " + this.getPrixTTC() + " €";
 		} else {
-			return this.fromage.getDésignation() + ", " + this.clé
-			        + ", Prix TTC : " + this.getPrixTTC() + " €";
+			return this.fromage.getDésignation() + ", " + this.clé + ", Prix TTC : " + this.getPrixTTC() + " €";
 		}
 	}
-	
+
 	public String toStringIHM() {
 		return "";
 	}
 
 	public String toStringAvecStock() {
-		return this.toString() + ", Quantité en stock : "
-		        + this.quantitéEnStock;
+		return this.toString() + ", Quantité en stock : " + this.quantitéEnStock;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		Article other = (Article) obj;
-		return (this.fromage.equals(other.fromage)
-		        && this.clé.equals(other.clé));
+		return (this.fromage.equals(other.fromage) && this.clé.equals(other.clé));
 	}
 
 }
