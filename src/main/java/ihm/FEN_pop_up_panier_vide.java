@@ -60,35 +60,24 @@ public class FEN_pop_up_panier_vide extends JFrame {
 		int hauteur = (int) (screenSize.height * 0.7);  // 70% de la hauteur de l'écran	    
 		int largueur = (int) (screenSize.width * 0.7);  // 70% de la largueur de l'écran
 		
-		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Interrogation.png");
+		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Info.png");
 		Image img = icon.getImage();
-		Image resizedImage = img.getScaledInstance(largueur/16, hauteur/16,  java.awt.Image.SCALE_SMOOTH);  
+		Image resizedImage = img.getScaledInstance(largueur/16, hauteur/12,  java.awt.Image.SCALE_SMOOTH);  
 		icon = new ImageIcon(resizedImage);
 		
 		lbl1.setIcon(icon);
 		panel.add(lbl1);
 		
-		JLabel lbl2 = new JLabel("Voulez-vous vraiment supprimer votre panier ?");
+		JLabel lbl2 = new JLabel("Le panier est vide !");
 		lbl2.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		panel.add(lbl2);
 		
 		JPanel panel1 = new JPanel();
 		contentPane.add(panel1, BorderLayout.SOUTH);
 		
-		JButton btn1 = new JButton("Oui");
-		btn1.setBackground(new Color(0, 255, 128));
+		JButton btn1 = new JButton("OK");
+		btn1.setBackground(new Color(255,255,128));
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel1.add(btn1);
-		
-		JButton btn2 = new JButton("Non");
-		btn2.setBackground(new Color(255, 128, 0));
-		btn2.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		panel1.add(btn2);
-		
-		JButton btn3 = new JButton("Annuler");
-		btn3.setBackground(new Color(255, 0, 0));
-		btn3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		panel1.add(btn3);
 	}
-
 }

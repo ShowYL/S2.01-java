@@ -90,5 +90,4 @@ public class FEN_pop_up_supprimer extends JFrame {
 		btn3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel1.add(btn3);
 	}
-
 }

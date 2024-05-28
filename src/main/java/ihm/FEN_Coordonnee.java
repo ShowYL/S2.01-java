@@ -14,6 +14,7 @@ import javax.swing.ButtonGroup;
 
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.JLabel;
@@ -94,6 +95,7 @@ public class FEN_Coordonnee {
 	        JLabel label = new JLabel(labels[i]);
 	        label.setHorizontalAlignment(JLabel.RIGHT);
 	        JTextField textField = new JTextField();
+	        textField.setPreferredSize(new Dimension(150,0));
 	        panelCentreOuest.add(label);
 	        panelCentreOuest.add(textField);
 	    }
@@ -113,20 +115,40 @@ public class FEN_Coordonnee {
 	    
 	    JPanel panelCentreEstNordSud = new JPanel();
 	    panelCentreEstNord.add(panelCentreEstNordSud, BorderLayout.SOUTH);
-	    panelCentreEstNordSud.setLayout(new GridLayout(3,2));
 	    
+	    
+	    panelCentreEstNordSud.setLayout(new GridLayout(3,2));
+	    JPanel panelCB = new JPanel();
 	    ImageIcon icon2 = new ImageIcon("src\\main\\resources\\images\\icons\\CB.png");
 	    Image img2 = icon2.getImage();
         Image resizedImage2 = img2.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
         icon2 = new ImageIcon(resizedImage2);
-	    final ButtonGroup payementGroup = new ButtonGroup();
 	    JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit");
-	    rdbtnNewRadioButton.setIcon(icon2);
-	    panelCentreEstNordSud.add(rdbtnNewRadioButton);
-	    JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Paypal");
-	    panelCentreEstNordSud.add(rdbtnNewRadioButton2);
-	    JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Paiement par chèque");
-	    panelCentreEstNordSud.add(rdbtnNewRadioButton3);
+	    JLabel imageCB = new JLabel(icon2);
+	    panelCB.add(rdbtnNewRadioButton);
+	    panelCB.add(imageCB);
+	    panelCentreEstNordSud.add(panelCB);
+	    JPanel panelPaypal = new JPanel();
+	    ImageIcon icon3 = new ImageIcon("src\\main\\resources\\images\\icons\\Paypal.png");
+	    Image img3 = icon3.getImage();
+        Image resizedImage3 = img3.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
+        icon3 = new ImageIcon(resizedImage3);
+	    JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Carte de crédit");
+	    JLabel imagePaypal = new JLabel(icon3);
+	    panelPaypal.add(rdbtnNewRadioButton2);
+	    panelPaypal.add(imagePaypal);
+	    panelCentreEstNordSud.add(panelPaypal);
+	    JPanel panelCheque = new JPanel();
+	    ImageIcon icon4 = new ImageIcon("src\\main\\resources\\images\\icons\\Cheque.png");
+	    Image img4 = icon4.getImage();
+        Image resizedImage4 = img4.getScaledInstance(largueur/9, hauteur/9,  java.awt.Image.SCALE_SMOOTH);  
+        icon4 = new ImageIcon(resizedImage4);
+	    JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Carte de crédit");
+	    JLabel imageCheque = new JLabel(icon4);
+	    panelCheque.add(rdbtnNewRadioButton3);
+	    panelCheque.add(imageCheque);
+	    panelCentreEstNordSud.add(panelCheque);
+	    ButtonGroup payementGroup = new ButtonGroup();
 	    payementGroup.add(rdbtnNewRadioButton);
 	    payementGroup.add(rdbtnNewRadioButton2);
 	    payementGroup.add(rdbtnNewRadioButton3);
