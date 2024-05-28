@@ -62,7 +62,6 @@ public class FEN_Description extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-<<<<<<< HEAD
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(0, 0, 0));
@@ -82,55 +81,29 @@ public class FEN_Description extends JFrame {
 		frommage_logo.setIcon(icon1);
 		panel.add(frommage_logo);
 		
-=======
-
->>>>>>> f445d2e8998ff7352f6361f28ae9c5695c8534dd
 		JLabel titre = new JLabel("[Nom du fromage]");
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
-<<<<<<< HEAD
 		titre.setForeground(Color.WHITE);
 		titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
 		titre.setBorder(new EmptyBorder(11, 0, 15, 0));
 		panel.add(titre);
 		
-=======
-		titre.setForeground(new Color(255, 255, 255));
-		contentPane.add(titre, BorderLayout.NORTH);
-
->>>>>>> f445d2e8998ff7352f6361f28ae9c5695c8534dd
 		JPanel panel_fromage = new JPanel();
 		panel_fromage.setBackground(new Color(192, 192, 192));
 		contentPane.add(panel_fromage, BorderLayout.CENTER);
 		panel_fromage.setLayout(new GridLayout(0, 2, 0, 0));
-
+		
 		JLabel photo = new JLabel("PHOTO");
 		photo.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		photo.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_fromage.add(photo);
-
+		
 		JPanel panel_description = new JPanel();
 		panel_description.setBackground(new Color(192, 192, 192));
 		panel_fromage.add(panel_description);
 		panel_description.setLayout(new BoxLayout(panel_description, BoxLayout.Y_AXIS));
-<<<<<<< HEAD
 		
-=======
-
-		JLabel titre_description = new JLabel("Description");
-		titre_description.setHorizontalAlignment(SwingConstants.CENTER);
-		titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		panel_description.add(titre_description);
-
->>>>>>> f445d2e8998ff7352f6361f28ae9c5695c8534dd
 		JTextArea description = new JTextArea();
-<<<<<<< HEAD
-		description.setBackground(new Color(255, 255, 255));
-		description.setLineWrap(false);
-		description.setText(
-				"Lorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli\r\nLorem ipsum dolor sit amet, consectetur adipiscing eli");
-		panel_description.add(description);
-
-=======
 		description.setSelectionColor(new Color(0, 0, 0));
 		description.setText("TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest");
 		description.setLineWrap(true);
@@ -151,19 +124,14 @@ public class FEN_Description extends JFrame {
         titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
 
 		
->>>>>>> b012ff2e2f14daff1bbece5890d566fdc5cb46b4
 		JPanel panel_footer = new JPanel();
 		panel_footer.setBackground(new Color(0, 0, 0));
 		contentPane.add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new GridLayout(1, 2, 0, 0));
-
+		
 		JPanel panel_prix = new JPanel();
 		panel_prix.setBackground(new Color(0, 0, 0));
 		panel_footer.add(panel_prix);
-<<<<<<< HEAD
-
-		JLabel euro_logo_1 = new JLabel("E");
-=======
 		
 		JLabel euro_logo_1 = new JLabel("");
 		int h2 = (int) (screenSize.height * 0.2);  // 70% de la hauteur de l'écran
@@ -174,37 +142,32 @@ public class FEN_Description extends JFrame {
 		Image resizedImage2 = img2.getScaledInstance(l2/8, h2/6,  java.awt.Image.SCALE_SMOOTH);  
 		icon2 = new ImageIcon(resizedImage2);
 		
-<<<<<<< HEAD
 		euro_logo_1.setIcon(icon2);
-=======
-		euro_logo_1.setIcon(icon);
->>>>>>> b012ff2e2f14daff1bbece5890d566fdc5cb46b4
->>>>>>> f445d2e8998ff7352f6361f28ae9c5695c8534dd
 		euro_logo_1.setForeground(Color.WHITE);
 		euro_logo_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		panel_prix.add(euro_logo_1);
-
+		
 		JComboBox prix = new JComboBox();
 		prix.setBorder(new LineBorder(new Color(251, 220, 4), 3));
 		prix.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		prix.setModel(new DefaultComboBoxModel(new String[] { "Prix TTC : 3.99 €" }));
+		prix.setModel(new DefaultComboBoxModel(new String[] {"Prix TTC : 3.99 €"}));
 		panel_prix.add(prix);
-
+		
 		JComboBox quantite = new JComboBox();
 		quantite.setBorder(new LineBorder(new Color(251, 220, 4), 3));
 		quantite.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		quantite.setModel(new DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+		quantite.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
 		panel_prix.add(quantite);
-
+		
 		JPanel panel_validation_annulation = new JPanel();
 		panel_validation_annulation.setBackground(new Color(0, 0, 0));
 		panel_footer.add(panel_validation_annulation);
-
+		
 		JButton btn_add = new JButton("Ajouter au panier");
 		btn_add.setBackground(new Color(0, 128, 0));
 		btn_add.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_validation_annulation.add(btn_add);
-
+		
 		JButton btn_cancel = new JButton("Annuler");
 		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btn_cancel.setBackground(new Color(255, 0, 0));
