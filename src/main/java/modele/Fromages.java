@@ -69,8 +69,7 @@ public class Fromages {
 		for (Fromage f : this.fromages) {
 			if (f.nombreArticles() > 0) {
 				for (Article article : f.getArticles()) {
-					article.setQuantitéEnStock(
-					        (int) Math.round(Math.random() * 100));
+					article.setQuantitéEnStock((int) Math.round(Math.random() * 100));
 				}
 			}
 		}
@@ -83,12 +82,10 @@ public class Fromages {
 				enForme.append("Pas d'articles pour " + f.toString() + '\n');
 			}
 			if (f.getDescription() == null) {
-				enForme.append(
-				        "Pas de description pour " + f.toString() + '\n');
+				enForme.append("Pas de description pour " + f.toString() + '\n');
 			}
 			if (f.getNomImage() == null) {
-				enForme.append(
-				        "Pas de nom d'image pour " + f.toString() + '\n');
+				enForme.append("Pas de nom d'image pour " + f.toString() + '\n');
 			}
 		}
 		return enForme.toString();
