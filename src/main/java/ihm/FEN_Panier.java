@@ -276,11 +276,11 @@ public class FEN_Panier{
 				window.getFrame().setVisible(true);
 			}
 		});
-		Button_ValiderPanier.setBackground(new Color(174, 221, 148));
+		Button_ValiderPanier.setBackground(Constantes.VERT);
 		panel_BntVA.add(Button_ValiderPanier);
 		
 		JButton Button_AnullerPanier = new JButton("Annuler");
-		Button_AnullerPanier.setBackground(new Color(255, 138, 132));
+		Button_AnullerPanier.setBackground(Constantes.ROUGE);
 		panel_BntVA.add(Button_AnullerPanier);
 		
 		JPanel panel_BntCont = new JPanel();
