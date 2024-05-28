@@ -56,6 +56,10 @@ public class FEN_Panier{
 	public FEN_Panier() {
 		initialize();
 	}
+	
+	public JFrame getFrame() {
+		return this.frame;
+	}
 
 	/**
 	 * Initialize the contents of the frame.

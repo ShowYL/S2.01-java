@@ -16,6 +16,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -74,7 +76,7 @@ public class FEN_Coordonnee {
 
 	    int hauteur = (int) (screenSize.height * 0.7);  // 70% de la hauteur de l'écran
 	    int largueur = (int) (screenSize.width * 0.7);  // 70% de la largueur de l'écran
-	    frame.setSize(largueur,hauteur);
+	    frame.setSize((int)(largueur/0.7*0.5),hauteur);
         frame.setLocationRelativeTo(null);
 	    
 	    ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Coordonnee.png");
@@ -192,6 +194,15 @@ public class FEN_Coordonnee {
 	    JButton btnNewButton_1 = new JButton("Annuler");
 	    btnNewButton_1.setBackground(new Color(255, 0, 0));
 	    panel.add(btnNewButton_1);
+	    
+	    btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				FEN_Panier window = new FEN_Panier();
+				frame.setVisible(false);
+				window.getFrame().setVisible(true);
+			}
+		});
 	    
 	}
 
