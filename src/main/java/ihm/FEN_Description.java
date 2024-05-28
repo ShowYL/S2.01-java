@@ -28,7 +28,8 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.*;
+import modele.*;
+
 
 public class FEN_Description extends JFrame {
 
@@ -43,7 +44,7 @@ public class FEN_Description extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FEN_Description frame = new FEN_Description();
+					FEN_Description frame = new FEN_Description(new Fromage("test"));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +56,7 @@ public class FEN_Description extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FEN_Description() {
+	public FEN_Description(Fromage fromage) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +86,7 @@ public class FEN_Description extends JFrame {
 		frommage_logo.setIcon(icon1);
 		panel.add(frommage_logo);
 		
-		JLabel titre = new JLabel("[Nom du fromage]");
+		JLabel titre = new JLabel(fromage.getDésignation());
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
 		titre.setForeground(Color.WHITE);
 		titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
@@ -97,7 +98,8 @@ public class FEN_Description extends JFrame {
 		contentPane.add(panel_fromage, BorderLayout.CENTER);
 		panel_fromage.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel photo = new JLabel("PHOTO");
+		JLabel photo = new JLabel("");
+		photo.setIcon(new ImageIcon("src\\main\\resources\\images\\fromages\\hauteur200\\"+ fromage.getNomImage() +".jpg"));
 		photo.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		photo.setHorizontalAlignment(SwingConstants.CENTER);
 		panel_fromage.add(photo);
@@ -109,7 +111,7 @@ public class FEN_Description extends JFrame {
 		
 		JTextArea description = new JTextArea();
 		description.setSelectionColor(new Color(0, 0, 0));
-		description.setText("TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest");
+		description.setText(fromage.getDescription());
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);
 		description.setEditable(false);
