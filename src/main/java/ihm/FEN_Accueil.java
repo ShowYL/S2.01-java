@@ -124,7 +124,8 @@ public class FEN_Accueil {
 				if (e.getClickCount() == 2) { 
 					int index = Centre_liste.locationToIndex(e.getPoint()); 
                    	String selectedItem = listefromage.get(index);
-					FEN_Description fenDescription = new FEN_Description(selectedItem);
+                   	Fromage fromagevoulu= new Fromage(selectedItem);
+					FEN_Description fenDescription = new FEN_Description(fromagevoulu);
                    	fenDescription.setVisible(true);
                 }
 			}
