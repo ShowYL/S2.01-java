@@ -32,6 +32,8 @@ import modele.Fromage;
 import modele.Fromages;
 import modele.GenerationFromages;
 import modele.TypeLait;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FEN_Accueil {
 
@@ -111,6 +113,11 @@ public class FEN_Accueil {
 		Footer.add(Bouton_quitter_boite, BorderLayout.EAST);
 
 		JButton Quitter_Button = new JButton("Quitter");
+		Quitter_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		Quitter_Button.setBackground(new Color(255, 138, 132));
 		Bouton_quitter_boite.add(Quitter_Button);
 
@@ -126,10 +133,10 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					int index = Centre_liste.locationToIndex(e.getPoint());
-					String selectedItem = listefromage.get(index);
+					int index = Centre_liste.locationToIndex(e.getPoint()); 
+				   	String selectedItem = listefromage.get(index);
 					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem));
-					fenDescription.setVisible(true);
+				   	fenDescription.getFrame().setVisible(true);
 				}
 			}
 		});
@@ -141,7 +148,7 @@ public class FEN_Accueil {
 		Header.setLayout(new BorderLayout(0, 0));
 
 		JPanel Titre_page = new JPanel();
-		Titre_page.setBackground(new Color(0, 0, 0));
+		Titre_page.setBackground(Constantes.NOIR);
 		Header.add(Titre_page, BorderLayout.CENTER);
 
 		JLabel Logo_fromage = new JLabel("");

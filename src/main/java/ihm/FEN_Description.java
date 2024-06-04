@@ -6,37 +6,25 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
+import javax.swing.JComboBox;
+import javax.swing.JButton;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.border.LineBorder;
+import javax.swing.BoxLayout;
+import javax.swing.JTextArea;
+import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.BoxLayout;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import java.awt.Dimension;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.awt.event.ActionEvent;
+import modele.*;
 
-import modele.Article;
-import modele.Fromage;
+public class FEN_Description {
 
-public class FEN_Description extends JFrame {
-
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JPanel panel;
+	private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -46,8 +34,8 @@ public class FEN_Description extends JFrame {
 			@Override
 			public void run() {
 				try {
-					FEN_Description frame = new FEN_Description(new Fromage("ex"));
-					frame.setVisible(true);
+					FEN_Description window = new FEN_Description(new Fromage("test"));
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,32 +47,37 @@ public class FEN_Description extends JFrame {
 	 * Create the frame.
 	 */
 	public FEN_Description(Fromage fromage) {
+		initialize(fromage);
+	}
+	
+	public JFrame getFrame() {
+		return this.frame;
+	}
+	
+	private void initialize(Fromage fromage) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 685, 407);
-		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 0));
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
-
-		panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 0));
-		panel.setForeground(new Color(0, 0, 0));
-		contentPane.add(panel, BorderLayout.NORTH);
-
-		List<Article> articles = fromage.getArticles();
-
+		int hauteur = (int) (screenSize.height * 0.7);  // 70% de la hauteur de l'écran	    
+		int largueur = (int) (screenSize.width * 0.7);  // 70% de la largueur de l'écran
+		
+		frame = new JFrame();
+		frame.setBounds(100, 100, 685, 407);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		frame.setSize(663,397);
+        frame.setLocationRelativeTo(null);
+        frame.setBackground(Constantes.NOIR);
+        frame.getContentPane().setLayout(new BorderLayout(0, 0));
+        
+        JPanel panel = new JPanel();
+		panel.setBackground(Constantes.NOIR);
+		panel.setForeground(Constantes.NOIR);
+		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		
 		JLabel frommage_logo = new JLabel("");
-
-		int h1 = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
-		int l1 = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
-
+		
 		ImageIcon icon1 = new ImageIcon("src\\main\\resources\\images\\icons\\Cheese.png");
 		Image img1 = icon1.getImage();
-		Image resizedImage1 = img1.getScaledInstance(l1 / 20, h1 / 10, java.awt.Image.SCALE_SMOOTH);
+		Image resizedImage1 = img1.getScaledInstance(largueur/20, hauteur/10,  java.awt.Image.SCALE_SMOOTH);  
 		icon1 = new ImageIcon(resizedImage1);
 
 		frommage_logo.setIcon(icon1);
@@ -92,14 +85,14 @@ public class FEN_Description extends JFrame {
 
 		JLabel titre = new JLabel(fromage.getDésignation());
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
-		titre.setForeground(Color.WHITE);
+		titre.setForeground(Constantes.BLANC);
 		titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
 		titre.setBorder(new EmptyBorder(11, 0, 15, 0));
 		panel.add(titre);
 
 		JPanel panel_fromage = new JPanel();
-		panel_fromage.setBackground(new Color(192, 192, 192));
-		contentPane.add(panel_fromage, BorderLayout.CENTER);
+		panel_fromage.setBackground(Constantes.GRIS_CLAIR);
+		frame.getContentPane().add(panel_fromage, BorderLayout.CENTER);
 		panel_fromage.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JLabel photo = new JLabel("");
@@ -110,37 +103,37 @@ public class FEN_Description extends JFrame {
 		panel_fromage.add(photo);
 
 		JPanel panel_description = new JPanel();
-		panel_description.setBackground(new Color(192, 192, 192));
+		panel_description.setBackground(Constantes.JAUNE);
 		panel_fromage.add(panel_description);
 		panel_description.setLayout(new BoxLayout(panel_description, BoxLayout.Y_AXIS));
 
 		JTextArea description = new JTextArea();
-		description.setSelectionColor(new Color(0, 0, 0));
+		description.setSelectionColor(Constantes.NOIR);
 		description.setText(fromage.getDescription());
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);
 		description.setEditable(false);
-		description.setBackground(Color.WHITE);
-		description.setForeground(Color.BLACK);
-
+		description.setBackground(Constantes.BLANC);
+	    description.setForeground(Constantes.NOIR);
+		
 		JScrollPane scrollPane = new JScrollPane(description);
-		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setPreferredSize(new Dimension(200, 100));
-		panel_description.add(scrollPane);
-
-		JLabel titre_description = new JLabel("Description");
-		scrollPane.setColumnHeaderView(titre_description);
-		titre_description.setHorizontalAlignment(SwingConstants.CENTER);
-		titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPane.setPreferredSize(new Dimension(200, 100));
+        panel_description.add(scrollPane);
+        
+        JLabel titre_description = new JLabel("Description");
+        scrollPane.setColumnHeaderView(titre_description);
+        titre_description.setHorizontalAlignment(SwingConstants.CENTER);
+        titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
 
 		JPanel panel_footer = new JPanel();
-		panel_footer.setBackground(new Color(0, 0, 0));
-		contentPane.add(panel_footer, BorderLayout.SOUTH);
+		panel_footer.setBackground(Constantes.NOIR);
+		frame.getContentPane().add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new GridLayout(1, 2, 0, 0));
 
 		JPanel panel_prix = new JPanel();
-		panel_prix.setBackground(new Color(0, 0, 0));
+		panel_prix.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_prix);
 
 		JLabel euro_logo_1 = new JLabel("");
@@ -153,7 +146,7 @@ public class FEN_Description extends JFrame {
 		icon2 = new ImageIcon(resizedImage2);
 
 		euro_logo_1.setIcon(icon2);
-		euro_logo_1.setForeground(Color.WHITE);
+		euro_logo_1.setForeground(Constantes.BLANC);
 		euro_logo_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		panel_prix.add(euro_logo_1);
 
@@ -163,7 +156,7 @@ public class FEN_Description extends JFrame {
 		}
 
 		JComboBox prix = new JComboBox();
-		prix.setBorder(new LineBorder(new Color(251, 220, 4), 3));
+		prix.setBorder(new LineBorder(Constantes.JAUNE, 3));
 		prix.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		prix.setModel(new DefaultComboBoxModel(listeaffichageprix.toArray(new String[0])));
 		panel_prix.add(prix);
@@ -189,7 +182,7 @@ public class FEN_Description extends JFrame {
 
 			}
 		});
-		btn_add.setBackground(new Color(0, 128, 0));
+		btn_add.setBackground(Constantes.VERT);
 		btn_add.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_validation_annulation.add(btn_add);
 
@@ -197,12 +190,12 @@ public class FEN_Description extends JFrame {
 		btn_cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				frame.dispose();
 			}
 		});
 		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btn_cancel.setBackground(new Color(255, 0, 0));
+		btn_cancel.setBackground(Constantes.ROUGE);
 		panel_validation_annulation.add(btn_cancel);
+		
 	}
-
 }
