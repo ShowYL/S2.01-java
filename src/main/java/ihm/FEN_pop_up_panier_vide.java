@@ -36,6 +36,10 @@ public class FEN_pop_up_panier_vide {
 		});
 	}
 
+	public JFrame getFrame(){
+		return this.frame;
+	}
+
 	/**
 	 * Create the frame.
 	 */

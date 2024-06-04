@@ -134,7 +134,6 @@ public class FEN_Panier {
 		this.Tableau_Panier.getColumnModel().getColumn(2).setResizable(false);
 		this.Tableau_Panier.getColumnModel().getColumn(3).setResizable(false);
 		this.Tableau_Panier.getColumnModel().getColumn(4).setResizable(false);
-		model.addRow(new Object[] { "a", "b", "c" });
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
 		for (int i=0;i<20;i++){
 			this.ajouterLigne(icon, "Fromage", 1.2F, 2);
