@@ -76,17 +76,17 @@ public class FEN_pop_up_supprimer extends JFrame {
 		contentPane.add(panel1, BorderLayout.SOUTH);
 		
 		JButton btn1 = new JButton("Oui");
-		btn1.setBackground(new Color(0, 255, 128));
+		btn1.setBackground(Constantes.VERT);
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel1.add(btn1);
 		
 		JButton btn2 = new JButton("Non");
-		btn2.setBackground(new Color(255, 128, 0));
+		btn2.setBackground(Constantes.ORANGE);
 		btn2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel1.add(btn2);
 		
 		JButton btn3 = new JButton("Annuler");
-		btn3.setBackground(new Color(255, 0, 0));
+		btn3.setBackground(Constantes.ROUGE);
 		btn3.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel1.add(btn3);
 	}

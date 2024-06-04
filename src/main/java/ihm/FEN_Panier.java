@@ -169,7 +169,7 @@ public class FEN_Panier{
 		frame.getContentPane().add(new JScrollPane(Tableau_Panier));
 		
 		JPanel TrasporteurEtTotal = new JPanel();
-		TrasporteurEtTotal.setBackground(Color.LIGHT_GRAY);
+		TrasporteurEtTotal.setBackground(Constantes.GRIS_CLAIR);
 		frame.getContentPane().add(TrasporteurEtTotal);
 		TrasporteurEtTotal.setLayout(new BorderLayout(0, 0));
 		

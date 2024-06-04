@@ -62,7 +62,7 @@ public class FEN_Description extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 685, 407);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 0, 0));
+		contentPane.setBackground(Constantes.NOIR);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -88,13 +88,13 @@ public class FEN_Description extends JFrame {
 		
 		JLabel titre = new JLabel(fromage.getDésignation());
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
-		titre.setForeground(Color.WHITE);
+		titre.setForeground(Constantes.BLANC);
 		titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
 		titre.setBorder(new EmptyBorder(11, 0, 15, 0));
 		panel.add(titre);
 		
 		JPanel panel_fromage = new JPanel();
-		panel_fromage.setBackground(new Color(192, 192, 192));
+		panel_fromage.setBackground(Constantes.GRIS_CLAIR);
 		contentPane.add(panel_fromage, BorderLayout.CENTER);
 		panel_fromage.setLayout(new GridLayout(0, 2, 0, 0));
 		
@@ -105,18 +105,18 @@ public class FEN_Description extends JFrame {
 		panel_fromage.add(photo);
 		
 		JPanel panel_description = new JPanel();
-		panel_description.setBackground(new Color(192, 192, 192));
+		panel_description.setBackground(Constantes.GRIS_CLAIR);
 		panel_fromage.add(panel_description);
 		panel_description.setLayout(new BoxLayout(panel_description, BoxLayout.Y_AXIS));
 		
 		JTextArea description = new JTextArea();
-		description.setSelectionColor(new Color(0, 0, 0));
+		description.setSelectionColor(Constantes.NOIR);
 		description.setText(fromage.getDescription());
 		description.setLineWrap(true);
 		description.setWrapStyleWord(true);
 		description.setEditable(false);
-		description.setBackground(Color.WHITE);
-	    description.setForeground(Color.BLACK);
+		description.setBackground(Constantes.BLANC);
+	    description.setForeground(Constantes.NOIR);
 		
 		JScrollPane scrollPane = new JScrollPane(description);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -131,12 +131,12 @@ public class FEN_Description extends JFrame {
 
 		
 		JPanel panel_footer = new JPanel();
-		panel_footer.setBackground(new Color(0, 0, 0));
+		panel_footer.setBackground(Constantes.NOIR);
 		contentPane.add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JPanel panel_prix = new JPanel();
-		panel_prix.setBackground(new Color(0, 0, 0));
+		panel_prix.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_prix);
 		
 		JLabel euro_logo_1 = new JLabel("");
@@ -149,24 +149,24 @@ public class FEN_Description extends JFrame {
 		icon2 = new ImageIcon(resizedImage2);
 		
 		euro_logo_1.setIcon(icon2);
-		euro_logo_1.setForeground(Color.WHITE);
+		euro_logo_1.setForeground(Constantes.BLANC);
 		euro_logo_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		panel_prix.add(euro_logo_1);
 		
 		JComboBox prix = new JComboBox();
-		prix.setBorder(new LineBorder(new Color(251, 220, 4), 3));
+		prix.setBorder(new LineBorder(Constantes.JAUNE, 3));
 		prix.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		prix.setModel(new DefaultComboBoxModel(new String[] {"Prix TTC : 3.99 €"}));
 		panel_prix.add(prix);
 		
 		JComboBox quantite = new JComboBox();
-		quantite.setBorder(new LineBorder(new Color(251, 220, 4), 3));
+		quantite.setBorder(new LineBorder(Constantes.JAUNE, 3));
 		quantite.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		quantite.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
 		panel_prix.add(quantite);
 		
 		JPanel panel_validation_annulation = new JPanel();
-		panel_validation_annulation.setBackground(new Color(0, 0, 0));
+		panel_validation_annulation.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_validation_annulation);
 		
 		JButton btn_add = new JButton("Ajouter au panier");
@@ -174,7 +174,7 @@ public class FEN_Description extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn_add.setBackground(new Color(0, 128, 0));
+		btn_add.setBackground(Constantes.VERT);
 		btn_add.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_validation_annulation.add(btn_add);
 		
@@ -185,7 +185,7 @@ public class FEN_Description extends JFrame {
 			}
 		});
 		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btn_cancel.setBackground(new Color(255, 0, 0));
+		btn_cancel.setBackground(Constantes.ROUGE);
 		panel_validation_annulation.add(btn_cancel);
 	}
 
