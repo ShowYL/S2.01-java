@@ -17,6 +17,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class FEN_pop_up_panier_vide {
 
@@ -81,6 +83,11 @@ public class FEN_pop_up_panier_vide {
 		frame.getContentPane().add(panel1, BorderLayout.SOUTH);
 		
 		JButton btn1 = new JButton("OK");
+		btn1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		btn1.setBackground(Constantes.VERT);
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btn1.addMouseListener(new MouseAdapter() {
