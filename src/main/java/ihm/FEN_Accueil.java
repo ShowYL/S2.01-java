@@ -83,12 +83,12 @@ public class FEN_Accueil {
 		frame.setLocationRelativeTo(null);
 
 		JPanel Footer = new JPanel();
-		Footer.setBackground(Color.BLACK);
+		Footer.setBackground(Constantes.NOIR);
 		frame.getContentPane().add(Footer, BorderLayout.SOUTH);
 		Footer.setLayout(new BorderLayout(0, 0));
 
 		JPanel Boite_choix_lait = new JPanel();
-		Boite_choix_lait.setBackground(Color.BLACK);
+		Boite_choix_lait.setBackground(Constantes.NOIR);
 		Footer.add(Boite_choix_lait, BorderLayout.CENTER);
 		Boite_choix_lait.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -101,15 +101,15 @@ public class FEN_Accueil {
 		Boite_choix_lait.add(Logo_vache);
 
 		JComboBox Choix_lait = new JComboBox();
-		Choix_lait.setForeground(Color.WHITE);
-		Choix_lait.setBackground(Color.BLACK);
-		Choix_lait.setBorder(new LineBorder(new Color(254, 251, 100)));
+		Choix_lait.setForeground(Constantes.BLANC);
+		Choix_lait.setBackground(Constantes.NOIR);
+		Choix_lait.setBorder(new LineBorder(Constantes.JAUNE));
 		Choix_lait.setModel(new DefaultComboBoxModel(
 				new String[] { "Tous les laits", "Lait de vache", "Lait de chèvre", "Lait de brebis" }));
 		Boite_choix_lait.add(Choix_lait);
 
 		JPanel Bouton_quitter_boite = new JPanel();
-		Bouton_quitter_boite.setBackground(new Color(0, 0, 0));
+		Bouton_quitter_boite.setBackground(Constantes.NOIR);
 		Footer.add(Bouton_quitter_boite, BorderLayout.EAST);
 
 		JButton Quitter_Button = new JButton("Quitter");
@@ -118,7 +118,7 @@ public class FEN_Accueil {
 				frame.dispose();
 			}
 		});
-		Quitter_Button.setBackground(new Color(255, 138, 132));
+		Quitter_Button.setBackground(Constantes.ROUGE);
 		Bouton_quitter_boite.add(Quitter_Button);
 
 		GenerationFromages generation = new GenerationFromages();
@@ -140,10 +140,10 @@ public class FEN_Accueil {
 				}
 			}
 		});
-		Centre_liste.setBackground(Color.LIGHT_GRAY);
+		Centre_liste.setBackground(Constantes.GRIS_CLAIR);
 		frame.getContentPane().add(new JScrollPane(Centre_liste), BorderLayout.CENTER);
 		JPanel Header = new JPanel();
-		Header.setBackground(Color.BLACK);
+		Header.setBackground(Constantes.NOIR);
 		frame.getContentPane().add(Header, BorderLayout.NORTH);
 		Header.setLayout(new BorderLayout(0, 0));
 
@@ -162,13 +162,13 @@ public class FEN_Accueil {
 		JLabel Titre = new JLabel("Nos fromages");
 		Titre.setOpaque(true);
 		Titre.setHorizontalAlignment(SwingConstants.CENTER);
-		Titre.setForeground(Color.WHITE);
+		Titre.setForeground(Constantes.BLANC);
 		Titre.setFont(new Font("Alef", Font.PLAIN, 25));
-		Titre.setBackground(Color.BLACK);
+		Titre.setBackground(Constantes.NOIR);
 		Titre_page.add(Titre);
 
 		JPanel Bouton_panier = new JPanel();
-		Bouton_panier.setBackground(new Color(0, 0, 0));
+		Bouton_panier.setBackground(Constantes.NOIR);
 		Header.add(Bouton_panier, BorderLayout.EAST);
 
 		JButton Panier = new JButton("XX,XX€");
@@ -178,7 +178,7 @@ public class FEN_Accueil {
 		icon = new ImageIcon(resizedImage);
 		Panier.setIcon(icon);
 		Panier.setHorizontalAlignment(SwingConstants.RIGHT);
-		Panier.setBackground(new Color(254, 251, 100));
+		Panier.setBackground(Constantes.JAUNE);
 		Panier.setAlignmentX(1.0f);
 		Panier.addMouseListener(new MouseAdapter() {
 			@Override

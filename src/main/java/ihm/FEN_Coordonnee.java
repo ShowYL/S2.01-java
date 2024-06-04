@@ -188,12 +188,12 @@ public class FEN_Coordonnee {
 	    
 	    
 	    JPanel panelSud = new JPanel();
-	    panelSud.setBackground(new Color(0, 0, 0));
+	    panelSud.setBackground(Constantes.NOIR);
 	    frame.getContentPane().add(panelSud, BorderLayout.SOUTH);
 	    panelSud.setLayout(new BorderLayout(0, 0));
 	    
 	    JPanel panel = new JPanel();
-	    panel.setBackground(new Color(0, 0, 0));
+	    panel.setBackground(Constantes.NOIR);
 	    panelSud.add(panel, BorderLayout.EAST);
 	    
 	    JButton btnNewButton = new JButton("Valider");

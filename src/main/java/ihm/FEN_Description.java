@@ -183,7 +183,7 @@ public class FEN_Description {
 		panel_prix.add(quantite);
 
 		JPanel panel_validation_annulation = new JPanel();
-		panel_validation_annulation.setBackground(new Color(0, 0, 0));
+		panel_validation_annulation.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_validation_annulation);
 
 		JButton btn_add = new JButton("Ajouter au panier");
