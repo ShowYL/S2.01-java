@@ -137,7 +137,9 @@ public class FEN_Panier {
 		this.Tableau_Panier.getColumnModel().getColumn(4).setResizable(false);
 		model.addRow(new Object[] { "a", "b", "c" });
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
-
+		for (int i=0;i<20;i++){
+			this.ajouterLigne(icon, "Fromage", 1.2F, 2);
+		}
 		JPanel TrasporteurEtTotal = new JPanel();
 		TrasporteurEtTotal.setBackground(Color.LIGHT_GRAY);
 		this.frame.getContentPane().add(TrasporteurEtTotal);
@@ -306,7 +308,7 @@ public class FEN_Panier {
 		prixExpedition.setText(String.valueOf(prix_expedition) + "€");
 	}
 
-	public void ajouterLigne(Image image,String produit,float prix,int quantité){
+	public void ajouterLigne(ImageIcon image,String produit,float prix,int quantité){
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.addRow(new Object[]{image,produit,prix,quantité,prix*quantité});
 	}
