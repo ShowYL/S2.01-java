@@ -107,6 +107,11 @@ public class FEN_Accueil {
 		Footer.add(Bouton_quitter_boite, BorderLayout.EAST);
 		
 		JButton Quitter_Button = new JButton("Quitter");
+		Quitter_Button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
 		Quitter_Button.setBackground(new Color(255, 138, 132));
 		Bouton_quitter_boite.add(Quitter_Button);
 
@@ -125,7 +130,7 @@ public class FEN_Accueil {
 					int index = Centre_liste.locationToIndex(e.getPoint()); 
                    	String selectedItem = listefromage.get(index);
 					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem));
-                   	fenDescription.setVisible(true);
+                   	fenDescription.getFrame().setVisible(true);
                 }
 			}
 		});
