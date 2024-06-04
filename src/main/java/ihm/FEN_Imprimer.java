@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import java.awt.FlowLayout;
 
 public class FEN_Imprimer {
 
@@ -57,7 +59,7 @@ public class FEN_Imprimer {
         
         JPanel panel = new JPanel();
 		panel.setBackground(Constantes.NOIR);
-		panel.setForeground(Constantes.NOIR);
+		panel.setForeground(new Color(0, 0, 0));
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel titre = new JLabel("Imprimer");
@@ -67,7 +69,27 @@ public class FEN_Imprimer {
 		titre.setBorder(new EmptyBorder(11, 0, 15, 0));
 		panel.add(titre);
 		
+		JPanel panel_center = new JPanel();
+		frame.getContentPane().add(panel_center, BorderLayout.CENTER);
+		panel_center.setLayout(new GridLayout(2, 1, 0, 0));
 		
+		JPanel panel_service = new JPanel();
+		panel_center.add(panel_service);
+		
+		JLabel lblService = new JLabel("Service d'impression");
+		lblService.setHorizontalAlignment(SwingConstants.LEFT);
+		lblService.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		panel_service.add(lblService);
+		
+		JPanel panel_center_footer = new JPanel();
+		panel_center.add(panel_center_footer);
+		panel_center_footer.setLayout(new GridLayout(0, 2, 0, 0));
+		
+		JPanel panel_plage = new JPanel();
+		panel_center_footer.add(panel_plage);
+		
+		JPanel panel_copies = new JPanel();
+		panel_center_footer.add(panel_copies);
 		
 		JPanel panel_footer = new JPanel();
 		panel_footer.setBackground(Constantes.NOIR);
@@ -100,6 +122,7 @@ public class FEN_Imprimer {
 		btn_quit.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btn_quit.setBackground(Constantes.ROUGE);
 		panel_imprim_quit.add(btn_quit);
+		
 	}
 
 }

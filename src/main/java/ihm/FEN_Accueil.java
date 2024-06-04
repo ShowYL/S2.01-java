@@ -184,7 +184,13 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				FEN_Panier window = new FEN_Panier();
-				window.getFrame().setVisible(true);
+				int count= window.getTableau().getModel().getRowCount();
+				if(count==0){
+					FEN_pop_up_panier_vide panierVide = new FEN_pop_up_panier_vide();
+					panierVide.getFrame().setVisible(true);
+				}else{
+					window.getFrame().setVisible(true);
+				}
 			}
 		});
 		Bouton_panier.add(Panier);
