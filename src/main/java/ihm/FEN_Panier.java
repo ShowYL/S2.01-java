@@ -135,11 +135,9 @@ public class FEN_Panier {
 		this.Tableau_Panier.getColumnModel().getColumn(3).setResizable(false);
 		this.Tableau_Panier.getColumnModel().getColumn(4).setResizable(false);
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
-		/*
 		for (int i=0;i<20;i++){
 			this.ajouterLigne(icon, "Fromage", 1.2F, 2);
 		}
-		*/
 		JPanel TrasporteurEtTotal = new JPanel();
 		TrasporteurEtTotal.setBackground(Constantes.GRIS_CLAIR);
 		this.frame.getContentPane().add(TrasporteurEtTotal);
