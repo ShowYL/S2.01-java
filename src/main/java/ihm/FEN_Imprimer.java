@@ -4,7 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,6 +67,39 @@ public class FEN_Imprimer {
 		titre.setBorder(new EmptyBorder(11, 0, 15, 0));
 		panel.add(titre);
 		
+		
+		
+		JPanel panel_footer = new JPanel();
+		panel_footer.setBackground(new Color(0, 0, 0));
+		frame.getContentPane().add(panel_footer, BorderLayout.SOUTH);
+		panel_footer.setLayout(new GridLayout(1, 2, 0, 0));
+		
+		JPanel panel_empty = new JPanel();
+		panel_empty.setBackground(new Color(0, 0, 0));
+		panel_footer.add(panel_empty);
+		
+		JPanel panel_imprim_quit = new JPanel();
+		panel_imprim_quit.setBackground(new Color(0, 0, 0));
+		panel_footer.add(panel_imprim_quit);
+		
+		JButton btn_print = new JButton("Imprimer");
+		btn_print.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btn_print.setBackground(new Color(0, 128, 0));
+		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		panel_imprim_quit.add(btn_print);
+		
+		JButton btn_quit = new JButton("Quitter");
+		btn_quit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.dispose();
+			}
+		});
+		btn_quit.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btn_quit.setBackground(new Color(255, 0, 0));
+		panel_imprim_quit.add(btn_quit);
 	}
 
 }
