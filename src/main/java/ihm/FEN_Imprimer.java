@@ -57,7 +57,7 @@ public class FEN_Imprimer {
         
         JPanel panel = new JPanel();
 		panel.setBackground(Constantes.NOIR);
-		panel.setForeground(new Color(0, 0, 0));
+		panel.setForeground(Constantes.NOIR);
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel titre = new JLabel("Imprimer");
