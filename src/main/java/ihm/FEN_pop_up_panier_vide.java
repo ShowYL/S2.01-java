@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -81,6 +83,12 @@ public class FEN_pop_up_panier_vide {
 		JButton btn1 = new JButton("OK");
 		btn1.setBackground(Constantes.VERT);
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btn1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+			}
+		});
 		panel1.add(btn1);
 	}
 }
