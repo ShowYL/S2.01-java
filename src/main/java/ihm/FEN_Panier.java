@@ -306,8 +306,8 @@ public class FEN_Panier {
 		prixExpedition.setText(String.valueOf(prix_expedition) + "€");
 	}
 
-	public void ajouterLigne(Image image,String produit,float prix,int quantité){
+	public void ajouterLigne(ImageIcon image, String produit, float prix, int quantité) {
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
-		model.addRow(new Object[]{image,produit,prix,quantité,prix*quantité});
+		model.addRow(new Object[] { image, produit, prix, quantité, prix * quantité });
 	}
 }
