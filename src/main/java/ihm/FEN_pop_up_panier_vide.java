@@ -16,10 +16,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 
-public class FEN_pop_up_panier_vide extends JFrame {
+public class FEN_pop_up_panier_vide {
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	private JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -28,8 +27,8 @@ public class FEN_pop_up_panier_vide extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FEN_pop_up_panier_vide frame = new FEN_pop_up_panier_vide();
-					frame.setVisible(true);
+					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,16 +42,16 @@ public class FEN_pop_up_panier_vide extends JFrame {
 	public FEN_pop_up_panier_vide() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 537, 153);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		frame = new JFrame();
+		frame.setBounds(100, 100, 537, 153);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(499,141);
+        frame.setLocationRelativeTo(null);
+        frame.setBackground(Constantes.GRIS_CLAIR);
+        frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		contentPane.add(panel, BorderLayout.CENTER);
+		frame.getContentPane().add(panel, BorderLayout.CENTER);
 		
 		
 		JLabel lbl1 = new JLabel("");
@@ -73,7 +72,7 @@ public class FEN_pop_up_panier_vide extends JFrame {
 		panel.add(lbl2);
 		
 		JPanel panel1 = new JPanel();
-		contentPane.add(panel1, BorderLayout.SOUTH);
+		frame.getContentPane().add(panel1, BorderLayout.SOUTH);
 		
 		JButton btn1 = new JButton("OK");
 		btn1.setBackground(Constantes.VERT);
