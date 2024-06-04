@@ -6,21 +6,31 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.border.LineBorder;
-import javax.swing.BoxLayout;
-import javax.swing.JTextArea;
-import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.awt.Dimension;
-import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.util.List;
 import java.awt.event.ActionEvent;
-import modele.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import modele.Article;
+import modele.Fromage;
 
 public class FEN_Description {
 
@@ -49,35 +59,35 @@ public class FEN_Description {
 	public FEN_Description(Fromage fromage) {
 		initialize(fromage);
 	}
-	
+
 	public JFrame getFrame() {
 		return this.frame;
 	}
-	
+
 	private void initialize(Fromage fromage) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int hauteur = (int) (screenSize.height * 0.7);  // 70% de la hauteur de l'écran	    
-		int largueur = (int) (screenSize.width * 0.7);  // 70% de la largueur de l'écran
-		
+		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
+		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
+
 		frame = new JFrame();
 		frame.setBounds(100, 100, 685, 407);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setSize(663,397);
-        frame.setLocationRelativeTo(null);
-        frame.setBackground(Constantes.NOIR);
-        frame.getContentPane().setLayout(new BorderLayout(0, 0));
-        
-        JPanel panel = new JPanel();
+		frame.setSize(663, 397);
+		frame.setLocationRelativeTo(null);
+		frame.setBackground(Constantes.NOIR);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+
+		JPanel panel = new JPanel();
 		panel.setBackground(Constantes.NOIR);
 		panel.setForeground(Constantes.NOIR);
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
-		
+
 		JLabel frommage_logo = new JLabel("");
-		
+
 		ImageIcon icon1 = new ImageIcon("src\\main\\resources\\images\\icons\\Cheese.png");
 		Image img1 = icon1.getImage();
-		Image resizedImage1 = img1.getScaledInstance(largueur/20, hauteur/10,  java.awt.Image.SCALE_SMOOTH);  
+		Image resizedImage1 = img1.getScaledInstance(largueur / 20, hauteur / 10, java.awt.Image.SCALE_SMOOTH);
 		icon1 = new ImageIcon(resizedImage1);
 
 		frommage_logo.setIcon(icon1);
@@ -114,18 +124,18 @@ public class FEN_Description {
 		description.setWrapStyleWord(true);
 		description.setEditable(false);
 		description.setBackground(Constantes.BLANC);
-	    description.setForeground(Constantes.NOIR);
-		
+		description.setForeground(Constantes.NOIR);
+
 		JScrollPane scrollPane = new JScrollPane(description);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPane.setPreferredSize(new Dimension(200, 100));
-        panel_description.add(scrollPane);
-        
-        JLabel titre_description = new JLabel("Description");
-        scrollPane.setColumnHeaderView(titre_description);
-        titre_description.setHorizontalAlignment(SwingConstants.CENTER);
-        titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPane.setPreferredSize(new Dimension(200, 100));
+		panel_description.add(scrollPane);
+
+		JLabel titre_description = new JLabel("Description");
+		scrollPane.setColumnHeaderView(titre_description);
+		titre_description.setHorizontalAlignment(SwingConstants.CENTER);
+		titre_description.setFont(new Font("Tahoma", Font.PLAIN, 25));
 
 		JPanel panel_footer = new JPanel();
 		panel_footer.setBackground(Constantes.NOIR);
@@ -150,6 +160,7 @@ public class FEN_Description {
 		euro_logo_1.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		panel_prix.add(euro_logo_1);
 
+		List<Article> articles = fromage.getArticles();
 		ArrayList<String> listeaffichageprix = new ArrayList<>();
 		for (Article article : articles) {
 			listeaffichageprix.add(article.getClé() + " - Prix TTC : " + article.getPrixTTC() + " €");
@@ -196,6 +207,6 @@ public class FEN_Description {
 		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btn_cancel.setBackground(Constantes.ROUGE);
 		panel_validation_annulation.add(btn_cancel);
-		
+
 	}
 }
