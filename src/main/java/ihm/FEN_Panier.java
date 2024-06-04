@@ -274,6 +274,17 @@ public class FEN_Panier {
 		btnContinuerLesAchats.setBackground(Constantes.JAUNE);
 		panel_BntCont.add(btnContinuerLesAchats);
 
+		JButton btnViderPanier = new JButton("Vider le panier");
+		btnViderPanier.setBackground(Constantes.ORANGE);
+		btnViderPanier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer();
+				window.getFrame().setVisible(true);
+			}
+		});
+		panel_BntCont.add(btnViderPanier);
+
 		FEN_Panier.this.calculerExpedition(comboBoxTranporteur, prix_Panier, prixExpedition);
 
 	}

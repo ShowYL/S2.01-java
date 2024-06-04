@@ -5,12 +5,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -34,6 +38,10 @@ public class FEN_pop_up_supprimer {
 				}
 			}
 		});
+	}
+
+	public JFrame getFrame(){
+		return this.frame;
 	}
 
 	/**
@@ -77,16 +85,28 @@ public class FEN_pop_up_supprimer {
 		JButton btn1 = new JButton("Oui");
 		btn1.setBackground(Constantes.VERT);
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btn1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				FEN_Panier window = new FEN_Panier();
+				DefaultTableModel model = (DefaultTableModel) window.getTableau().getModel();
+				for(int i = model.getRowCount()-1 ; i>=0;i--){
+					model.removeRow(i);
+				}
+				frame.setVisible(false);
+			}
+		});
 		panel1.add(btn1);
 		
 		JButton btn2 = new JButton("Non");
-		btn2.setBackground(Constantes.ORANGE);
+		btn2.setBackground(Constantes.ROUGE);
 		btn2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btn2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				frame.setVisible(false);
+			}
+		});
 		panel1.add(btn2);
-		
-		JButton btn3 = new JButton("Annuler");
-		btn3.setBackground(Constantes.ROUGE);
-		btn3.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		panel1.add(btn3);
 	}
 }
