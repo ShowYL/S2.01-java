@@ -138,7 +138,7 @@ public class FEN_Accueil {
 	
 
 		JPanel Titre_page = new JPanel();
-		Titre_page.setBackground(Constantes.NOIR));
+		Titre_page.setBackground(Constantes.NOIR);
 		Header.add(Titre_page, BorderLayout.CENTER);
 
 		JLabel Logo_fromage = new JLabel("");
