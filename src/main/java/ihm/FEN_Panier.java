@@ -1,7 +1,6 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -81,12 +80,12 @@ public class FEN_Panier {
 		this.frame.setLocationRelativeTo(null);
 
 		JPanel Entete = new JPanel();
-		Entete.setBackground(new Color(0, 0, 0));
+		Entete.setBackground(Constantes.NOIR);
 		this.frame.getContentPane().add(Entete);
 		Entete.setLayout(new BorderLayout(0, 0));
 
 		JPanel titreEtImage = new JPanel();
-		titreEtImage.setBackground(new Color(0, 0, 0));
+		titreEtImage.setBackground(Constantes.NOIR);
 		Entete.add(titreEtImage, BorderLayout.CENTER);
 
 		JLabel ImagePanier = new JLabel("");
@@ -98,7 +97,7 @@ public class FEN_Panier {
 		titreEtImage.add(ImagePanier);
 
 		JLabel TitrePanier = new JLabel("Votre Panier");
-		TitrePanier.setForeground(new Color(255, 255, 255));
+		TitrePanier.setForeground(Constantes.BLANC);
 		TitrePanier.setFont(new Font("Alef", Font.PLAIN, 22));
 		titreEtImage.add(TitrePanier);
 
@@ -141,18 +140,18 @@ public class FEN_Panier {
 			this.ajouterLigne(icon, "Fromage", 1.2F, 2);
 		}
 		JPanel TrasporteurEtTotal = new JPanel();
-		TrasporteurEtTotal.setBackground(Color.LIGHT_GRAY);
+		TrasporteurEtTotal.setBackground(Constantes.GRIS_CLAIR);
 		this.frame.getContentPane().add(TrasporteurEtTotal);
 		TrasporteurEtTotal.setLayout(new BorderLayout(0, 0));
 
 		JPanel Transporteurs = new JPanel();
-		Transporteurs.setBackground(new Color(225, 225, 225));
-		Transporteurs.setBorder(new LineBorder(new Color(255, 255, 128), 2));
+		Transporteurs.setBackground(Constantes.BLANC);
+		Transporteurs.setBorder(new LineBorder(Constantes.JAUNE, 2));
 		TrasporteurEtTotal.add(Transporteurs, BorderLayout.WEST);
 		Transporteurs.setLayout(new GridLayout(3, 1, 0, 0));
 
 		JLabel TitreTransporteur = new JLabel("Transporteur");
-		TitreTransporteur.setBackground(new Color(223, 223, 223));
+		TitreTransporteur.setBackground(Constantes.BLANC);
 		TitreTransporteur.setAlignmentY(0.0f);
 		TitreTransporteur.setFont(new Font("Alef", Font.PLAIN, 16));
 		Transporteurs.add(TitreTransporteur);
@@ -163,7 +162,7 @@ public class FEN_Panier {
 		Transporteurs.add(TextFraiddePorts);
 
 		JPanel ImageetChoix = new JPanel();
-		ImageetChoix.setBackground(new Color(240, 240, 240));
+		ImageetChoix.setBackground(Constantes.BLANC);
 		Transporteurs.add(ImageetChoix);
 
 		JLabel ImageCamion = new JLabel("");
@@ -214,7 +213,7 @@ public class FEN_Panier {
 
 		PrixSousTot.setHorizontalAlignment(SwingConstants.RIGHT);
 		PrixSousTot.setOpaque(true);
-		PrixSousTot.setBackground(new Color(204, 228, 152));
+		PrixSousTot.setBackground(Constantes.VERT_CLAIR);
 		TotalPanier.add(PrixSousTot);
 
 		lblExpedition.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -223,7 +222,7 @@ public class FEN_Panier {
 
 		prixExpedition.setOpaque(true);
 		prixExpedition.setHorizontalAlignment(SwingConstants.RIGHT);
-		prixExpedition.setBackground(new Color(204, 228, 152));
+		prixExpedition.setBackground(Constantes.VERT_CLAIR);
 		TotalPanier.add(prixExpedition);
 
 		JLabel lblTotal = new JLabel("TOTAL :");
@@ -235,20 +234,20 @@ public class FEN_Panier {
 		JLabel prixTotal = new JLabel("50,2€");
 		prixTotal.setOpaque(true);
 		prixTotal.setHorizontalAlignment(SwingConstants.RIGHT);
-		prixTotal.setBackground(new Color(204, 228, 152));
+		prixTotal.setBackground(Constantes.ORANGE);
 		TotalPanier.add(prixTotal);
 
-		TotalPanier.setBorder(new LineBorder(new Color(255, 255, 128), 2));
+		TotalPanier.setBorder(new LineBorder(Constantes.JAUNE, 2));
 		TrasporteurEtTotal.add(TotalPanier, BorderLayout.EAST);
 		TotalPanier.setLayout(new GridLayout(3, 2, 0, 0));
 
 		JPanel PiedDePage = new JPanel();
-		PiedDePage.setBackground(new Color(0, 0, 0));
+		PiedDePage.setBackground(Constantes.NOIR);
 		this.frame.getContentPane().add(PiedDePage);
 		PiedDePage.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel_BntVA = new JPanel();
-		panel_BntVA.setBackground(new Color(0, 0, 0));
+		panel_BntVA.setBackground(Constantes.NOIR);
 		PiedDePage.add(panel_BntVA, BorderLayout.EAST);
 		panel_BntVA.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 
@@ -269,7 +268,7 @@ public class FEN_Panier {
 		panel_BntVA.add(Button_AnullerPanier);
 
 		JPanel panel_BntCont = new JPanel();
-		panel_BntCont.setBackground(new Color(0, 0, 0));
+		panel_BntCont.setBackground(Constantes.NOIR);
 		PiedDePage.add(panel_BntCont, BorderLayout.WEST);
 
 		JButton btnContinuerLesAchats = new JButton("Continuer les achats");
@@ -308,8 +307,8 @@ public class FEN_Panier {
 		prixExpedition.setText(String.valueOf(prix_expedition) + "€");
 	}
 
-	public void ajouterLigne(ImageIcon image,String produit,float prix,int quantité){
+	public void ajouterLigne(ImageIcon image, String produit, float prix, int quantité) {
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
-		model.addRow(new Object[]{image,produit,prix,quantité,prix*quantité});
+		model.addRow(new Object[] { image, produit, prix, quantité, prix * quantité });
 	}
 }

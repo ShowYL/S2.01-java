@@ -8,4 +8,5 @@ public class Constantes {
 	static final Color BLANC = new Color(255,255,255);
 	static final Color GRIS_CLAIR = Color.LIGHT_GRAY;
 	static final Color ORANGE = new Color(255,197,129);
+	static final Color VERT_CLAIR = new Color(174, 221, 148);
 }
