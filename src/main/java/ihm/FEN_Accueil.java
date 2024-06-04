@@ -103,11 +103,11 @@ public class FEN_Accueil {
 		Boite_choix_lait.add(Choix_lait);
 		
 		JPanel Bouton_quitter_boite = new JPanel();
-		Bouton_quitter_boite.setBackground(new Color(0, 0, 0));
+		Bouton_quitter_boite.setBackground(Constantes.NOIR);
 		Footer.add(Bouton_quitter_boite, BorderLayout.EAST);
 		
 		JButton Quitter_Button = new JButton("Quitter");
-		Quitter_Button.setBackground(new Color(255, 138, 132));
+		Quitter_Button.setBackground(Constantes.ROUGE);
 		Bouton_quitter_boite.add(Quitter_Button);
 
 		GenerationFromages generation=new GenerationFromages();
@@ -138,7 +138,7 @@ public class FEN_Accueil {
 	
 
 		JPanel Titre_page = new JPanel();
-		Titre_page.setBackground(new Color(0, 0, 0));
+		Titre_page.setBackground(Constantes.NOIR));
 		Header.add(Titre_page, BorderLayout.CENTER);
 
 		JLabel Logo_fromage = new JLabel("");
@@ -158,7 +158,7 @@ public class FEN_Accueil {
 		Titre_page.add(Titre);
 
 		JPanel Bouton_panier = new JPanel();
-		Bouton_panier.setBackground(new Color(0, 0, 0));
+		Bouton_panier.setBackground(Constantes.NOIR);
 		Header.add(Bouton_panier, BorderLayout.EAST);
 
 		JButton Panier = new JButton("XX,XX€");
@@ -168,7 +168,7 @@ public class FEN_Accueil {
 		icon = new ImageIcon(resizedImage);
 		Panier.setIcon(icon);
 		Panier.setHorizontalAlignment(SwingConstants.RIGHT);
-		Panier.setBackground(new Color(254, 251, 100));
+		Panier.setBackground(Constantes.JAUNE);
 		Panier.setAlignmentX(1.0f);
 		Bouton_panier.add(Panier);
 		
