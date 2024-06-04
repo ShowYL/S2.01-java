@@ -52,11 +52,11 @@ public class FEN_Imprimer {
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.setSize(696,420);
         frame.setLocationRelativeTo(null);
-        frame.setBackground(new Color(0, 0, 0));
+        frame.setBackground(Constantes.GRIS_CLAIR);
         frame.getContentPane().setLayout(new BorderLayout(0, 0));
         
         JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 0, 0));
+		panel.setBackground(Constantes.NOIR);
 		panel.setForeground(new Color(0, 0, 0));
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
@@ -70,16 +70,16 @@ public class FEN_Imprimer {
 		
 		
 		JPanel panel_footer = new JPanel();
-		panel_footer.setBackground(new Color(0, 0, 0));
+		panel_footer.setBackground(Constantes.NOIR);
 		frame.getContentPane().add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JPanel panel_empty = new JPanel();
-		panel_empty.setBackground(new Color(0, 0, 0));
+		panel_empty.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_empty);
 		
 		JPanel panel_imprim_quit = new JPanel();
-		panel_imprim_quit.setBackground(new Color(0, 0, 0));
+		panel_imprim_quit.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_imprim_quit);
 		
 		JButton btn_print = new JButton("Imprimer");
@@ -87,7 +87,7 @@ public class FEN_Imprimer {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btn_print.setBackground(new Color(0, 128, 0));
+		btn_print.setBackground(Constantes.VERT);
 		btn_print.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		panel_imprim_quit.add(btn_print);
 		
@@ -98,7 +98,7 @@ public class FEN_Imprimer {
 			}
 		});
 		btn_quit.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		btn_quit.setBackground(new Color(255, 0, 0));
+		btn_quit.setBackground(Constantes.ROUGE);
 		panel_imprim_quit.add(btn_quit);
 	}
 
