@@ -15,11 +15,8 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.LineBorder;
-import java.awt.GridBagLayout;
-import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -28,21 +25,10 @@ import javax.swing.JScrollPane;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
-import javax.swing.ListModel;
-import javax.swing.JList;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.awt.Rectangle;
-import java.awt.Component;
 import modele.*;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class FEN_Description {
 
-	private static final long serialVersionUID = 1L;	
 	private JFrame frame;
 
 	/**
@@ -81,7 +67,7 @@ public class FEN_Description {
 		frame.setBounds(100, 100, 685, 407);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setSize(largueur,hauteur);
+		frame.setSize(663,397);
         frame.setLocationRelativeTo(null);
         frame.setBackground(new Color(0, 0, 0));
         frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -205,12 +191,4 @@ public class FEN_Description {
 		panel_validation_annulation.add(btn_cancel);
 		
 	}
-		
-
-		//contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		
-
-	
-		
-
 }

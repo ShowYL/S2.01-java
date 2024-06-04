@@ -76,7 +76,7 @@ public class FEN_pop_up_panier_vide extends JFrame {
 		contentPane.add(panel1, BorderLayout.SOUTH);
 		
 		JButton btn1 = new JButton("OK");
-		btn1.setBackground(new Color(255,255,128));
+		btn1.setBackground(Constantes.VERT);
 		btn1.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		panel1.add(btn1);
 	}
