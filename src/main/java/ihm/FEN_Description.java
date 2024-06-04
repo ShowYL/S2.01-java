@@ -186,7 +186,7 @@ public class FEN_Description {
 				frame.dispose();
 			}
 		});
-		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		btn_cancel.setBackground(new Color(255, 0, 0));
 		panel_validation_annulation.add(btn_cancel);
 		
