@@ -75,7 +75,7 @@ public class FEN_Panier {
 		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
 		this.frame = new JFrame();
 		this.frame.setBounds(100, 100, 450, 300);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.frame.getContentPane().setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.Y_AXIS));
 		this.frame.setSize(largueur, hauteur);
 		this.frame.setLocationRelativeTo(null);

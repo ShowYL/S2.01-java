@@ -49,7 +49,7 @@ public class FEN_pop_up_panier_vide {
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 537, 153);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.setSize(499, 141);
 		frame.setLocationRelativeTo(null);
 		frame.setBackground(Constantes.GRIS_CLAIR);

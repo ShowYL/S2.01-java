@@ -187,7 +187,7 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				FEN_Panier window = new FEN_Panier(panier);
-				if(panier.estVide()){
+				if(panier.estVide()){ 
 					FEN_pop_up_panier_vide panierVide = new FEN_pop_up_panier_vide();
 					panierVide.getFrame().setVisible(true);
 				} else {

@@ -71,7 +71,7 @@ public class FEN_Description {
 
 		frame = new JFrame();
 		frame.setBounds(100, 100, 685, 407);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		frame.setSize(692, 421);
 		frame.setLocationRelativeTo(null);
