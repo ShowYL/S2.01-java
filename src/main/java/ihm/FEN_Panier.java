@@ -279,7 +279,7 @@ public class FEN_Panier {
 		btnViderPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer();
+				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier);
 				window.getFrame().setVisible(true);
 			}
 		});
