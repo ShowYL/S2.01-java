@@ -39,6 +39,7 @@ public class FEN_Accueil {
 
 	private JFrame frame;
 	private Panier panier;
+	private JButton boutonPanier;
 
 	/**
 	 * Launch the application.
@@ -118,7 +119,7 @@ public class FEN_Accueil {
 		JButton Quitter_Button = new JButton("Quitter");
 		Quitter_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				System.exit(0);
 			}
 		});
 		Quitter_Button.setBackground(Constantes.ROUGE);
@@ -138,7 +139,7 @@ public class FEN_Accueil {
 				if (e.getClickCount() == 2) {
 					int index = Centre_liste.locationToIndex(e.getPoint()); 
 				   	String selectedItem = listefromage.get(index);
-					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem),panier);
+					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem),panier,boutonPanier);
 				   	fenDescription.getFrame().setVisible(true);
 				}
 			}
@@ -174,19 +175,19 @@ public class FEN_Accueil {
 		Bouton_panier.setBackground(Constantes.NOIR);
 		Header.add(Bouton_panier, BorderLayout.EAST);
 
-		JButton Panier = new JButton("XX,XX€");
+		boutonPanier = new JButton("00,00 €");
 		icon = new ImageIcon("src\\main\\resources\\images\\icons\\Caddie.png");
 		img = icon.getImage();
 		resizedImage = img.getScaledInstance(largueur / 30, hauteur / 15, java.awt.Image.SCALE_SMOOTH);
 		icon = new ImageIcon(resizedImage);
-		Panier.setIcon(icon);
-		Panier.setHorizontalAlignment(SwingConstants.RIGHT);
-		Panier.setBackground(Constantes.JAUNE);
-		Panier.setAlignmentX(1.0f);
-		Panier.addMouseListener(new MouseAdapter() {
+		boutonPanier.setIcon(icon);
+		boutonPanier.setHorizontalAlignment(SwingConstants.RIGHT);
+		boutonPanier.setBackground(Constantes.JAUNE);
+		boutonPanier.setAlignmentX(1.0f);
+		boutonPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FEN_Panier window = new FEN_Panier(panier);
+				FEN_Panier window = new FEN_Panier(panier,boutonPanier);
 				if(panier.estVide()){ 
 					FEN_pop_up_panier_vide panierVide = new FEN_pop_up_panier_vide();
 					panierVide.getFrame().setVisible(true);
@@ -195,7 +196,7 @@ public class FEN_Accueil {
 				}
 			}
 		});
-		Bouton_panier.add(Panier);
+		Bouton_panier.add(boutonPanier);
 
 		Choix_lait.addItemListener(new ItemListener() {
 			@Override

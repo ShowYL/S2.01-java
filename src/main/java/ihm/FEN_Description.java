@@ -45,7 +45,7 @@ public class FEN_Description {
 			@Override
 			public void run() {
 				try {
-					FEN_Description window = new FEN_Description(new Fromage("test"), new Panier());
+					FEN_Description window = new FEN_Description(new Fromage("test"), new Panier(), new JButton());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -57,15 +57,15 @@ public class FEN_Description {
 	/**
 	 * Create the frame.
 	 */
-	public FEN_Description(Fromage fromage, Panier panier) {
-		initialize(fromage, panier);
+	public FEN_Description(Fromage fromage, Panier panier, JButton boutonPanier) {
+		initialize(fromage, panier, boutonPanier);
 	}
 
 	public JFrame getFrame() {
 		return this.frame;
 	}
 
-	private void initialize(Fromage fromage, Panier panier) {
+	private void initialize(Fromage fromage, Panier panier, JButton boutonPanier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
 		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
@@ -74,7 +74,7 @@ public class FEN_Description {
 		frame.setBounds(100, 100, 685, 407);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setSize(692, 421);
+		frame.setSize(815, 421);
 		frame.setLocationRelativeTo(null);
 		frame.setBackground(Constantes.NOIR);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
@@ -207,6 +207,7 @@ public class FEN_Description {
 							(int) quantite.getValue());
 					panier.ajouterArticle(article);
 				}
+				boutonPanier.setText(panier.prixPanier() + " €");
 				frame.dispose();
 			}
 		});
