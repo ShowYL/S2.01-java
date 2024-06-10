@@ -27,6 +27,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import modele.Panier;
 import modele.Article;
+import modele.ArticleEtQuantite;
 
 public class FEN_Panier {
 
@@ -325,9 +326,9 @@ public class FEN_Panier {
 		prixExpedition.setText(String.valueOf(prix_expedition));
 	}
 
-	public void ajouterLigne(Article article) {
+	public void ajouterLigne(ArticleEtQuantite articleEtQuantite) {
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
-		model.addRow(new Object[] { article.getFromage().getNomImage(), article.getFromage().getDésignation(), article.getPrixTTC(), 1, article.getPrixTTC()*1 });
+		model.addRow(new Object[] { articleEtQuantite.getArticle().getFromage().getNomImage(), articleEtQuantite.getArticle().getFromage().getDésignation(), articleEtQuantite.getArticle().getPrixTTC(), articleEtQuantite.getQuantite(), articleEtQuantite.getArticle().getPrixTTC()*articleEtQuantite.getQuantite() });
 		/*
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.addRow(new Object[] { image, produit, prix, quantité, prix * quantité });

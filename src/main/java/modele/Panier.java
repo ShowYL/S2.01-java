@@ -3,14 +3,14 @@ import java.util.ArrayList;
 
 public class Panier {
 	
-	private ArrayList<Article> liste_P;
+	private ArrayList<ArticleEtQuantite> liste_P;
 	
 	
 	public Panier() {
 		this.liste_P = new ArrayList<>();
 	}
 	
-	public ArrayList<Article> getPanier() {
+	public ArrayList<ArticleEtQuantite> getPanier() {
 		return this.liste_P;
 	}
 	
@@ -22,7 +22,7 @@ public class Panier {
 		return this.liste_P.size() == 0;
 	}
 	
-	public void ajouterArticle(Article article) {
+	public void ajouterArticle(ArticleEtQuantite article) {
 		this.liste_P.add(article);
 	}
 

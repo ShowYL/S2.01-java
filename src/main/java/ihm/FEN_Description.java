@@ -31,6 +31,7 @@ import javax.swing.border.LineBorder;
 import modele.Article;
 import modele.Fromage;
 import modele.Panier;
+import modele.ArticleEtQuantite;
 
 public class FEN_Description {
 
@@ -179,7 +180,7 @@ public class FEN_Description {
 			i++;
 		}
 		JSpinner quantite = new JSpinner();
-		quantite.setModel(new SpinnerNumberModel(1, 1, (int) listequantité[prix.getSelectedIndex()], 1));
+		quantite.setModel(new SpinnerNumberModel(0, 0, (int) listequantité[prix.getSelectedIndex()], 1));
 		panel_prix.add(quantite);
 
 		JPanel panel_validation_annulation = new JPanel();
@@ -190,16 +191,19 @@ public class FEN_Description {
 		btn_add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*
-				FEN_Panier fenpanier = new FEN_Panier();
-				fenpanier.ajouterLigne(
-						new ImageIcon("src\\main\\resources\\images\\fromages\\hauteur200\\" + fromage.getNomImage()
-								+ ".jpg"),
-						articles.get(prix.getSelectedIndex()).getFromage().getDésignation(),
-						articles.get(prix.getSelectedIndex()).getPrixTTC(),
-						quantite.getComponentCount());
-				*/
-				panier.ajouterArticle(articles.get(prix.getSelectedIndex()));
+				articles.get(prix.getSelectedIndex()).retirerQuantité((int) quantite.getValue());
+				boolean b = false;
+				
+				for (int i = 0 ; i < panier.getSize() ; i++) {
+					if (panier.getPanier().get(i).getArticle().getFromage().getDésignation() == articles.get(prix.getSelectedIndex()).getFromage().getDésignation()) {
+						panier.getPanier().get(i).changerQuantite(panier.getPanier().get(i).getQuantite()+(int) quantite.getValue());
+						b = true;
+					}
+				}
+				if (!b) {
+					ArticleEtQuantite article = new ArticleEtQuantite(articles.get(prix.getSelectedIndex()),(int) quantite.getValue());		
+					panier.ajouterArticle(article);
+				}
 			}
 		});
 		btn_add.setBackground(Constantes.VERT);
