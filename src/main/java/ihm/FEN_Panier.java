@@ -25,6 +25,8 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+import modele.Panier;
+import modele.Article;
 
 public class FEN_Panier {
 
@@ -39,7 +41,7 @@ public class FEN_Panier {
 			@Override
 			public void run() {
 				try {
-					FEN_Panier window = new FEN_Panier();
+					FEN_Panier window = new FEN_Panier(new Panier());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,8 +53,8 @@ public class FEN_Panier {
 	/**
 	 * Create the application.
 	 */
-	public FEN_Panier() {
-		this.initialize();
+	public FEN_Panier(Panier panier) {
+		this.initialize(panier);
 	}
 
 	public JFrame getFrame() {
@@ -66,7 +68,7 @@ public class FEN_Panier {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Panier panier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
@@ -143,8 +145,8 @@ public class FEN_Panier {
 		this.Tableau_Panier.getColumnModel().getColumn(3).setResizable(false);
 		this.Tableau_Panier.getColumnModel().getColumn(4).setResizable(false);
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
-		for (int i = 0; i < 20; i++) {
-			this.ajouterLigne(icon, "Fromage", 1.2F, 2);
+		for (int i = 0; i < panier.getSize(); i++) {
+			this.ajouterLigne(panier.getPanier().get(i));
 		}
 		JPanel TrasporteurEtTotal = new JPanel();
 		TrasporteurEtTotal.setBackground(Constantes.GRIS_CLAIR);
@@ -318,8 +320,12 @@ public class FEN_Panier {
 		prixExpedition.setText(String.valueOf(prix_expedition));
 	}
 
-	public void ajouterLigne(ImageIcon image, String produit, float prix, int quantité) {
+	public void ajouterLigne(Article article) {
+		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
+		model.addRow(new Object[] { article.getFromage().getNomImage(), article.getFromage().getDésignation(), article.getPrixTTC(), 1, article.getPrixTTC()*1 });
+		/*
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.addRow(new Object[] { image, produit, prix, quantité, prix * quantité });
+		*/
 	}
 }
