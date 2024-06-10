@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import java.awt.Font;
+import modele.Panier;
 
 public class FEN_pop_up_supprimer {
 
@@ -30,7 +31,7 @@ public class FEN_pop_up_supprimer {
 			public void run() {
 				try {
 					JTable Tableau_Panier = new JTable(); // Define the JTable here
-					FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier);
+					FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier, new Panier(), new JButton());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +47,7 @@ public class FEN_pop_up_supprimer {
 	/**
 	 * Create the frame.
 	 */
-	public FEN_pop_up_supprimer(JTable Tableau_Panier) {
+	public FEN_pop_up_supprimer(JTable Tableau_Panier, Panier panier, JButton boutonPanier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		frame = new JFrame();
@@ -89,7 +90,10 @@ public class FEN_pop_up_supprimer {
 				DefaultTableModel model = (DefaultTableModel) Tableau_Panier.getModel();
 				for (int i = model.getRowCount() - 1; i >= 0; i--) {
 					model.removeRow(i);
+					panier.getPanier().get(i).getArticle().setQuantitéEnStock(panier.getPanier().get(i).getQuantite());
 				}
+				panier.getPanier().clear();
+				boutonPanier.setText("00,00 €");
 				frame.setVisible(false);
 			}
 		});

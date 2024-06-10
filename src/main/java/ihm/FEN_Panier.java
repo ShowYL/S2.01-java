@@ -25,9 +25,9 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import modele.Panier;
-import modele.Article;
+
 import modele.ArticleEtQuantite;
+import modele.Panier;
 
 public class FEN_Panier {
 
@@ -42,7 +42,7 @@ public class FEN_Panier {
 			@Override
 			public void run() {
 				try {
-					FEN_Panier window = new FEN_Panier(new Panier());
+					FEN_Panier window = new FEN_Panier(new Panier(), new JButton());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,8 +54,8 @@ public class FEN_Panier {
 	/**
 	 * Create the application.
 	 */
-	public FEN_Panier(Panier panier) {
-		this.initialize(panier);
+	public FEN_Panier(Panier panier, JButton boutonPanier) {
+		this.initialize(panier, boutonPanier);
 	}
 
 	public JFrame getFrame() {
@@ -69,7 +69,7 @@ public class FEN_Panier {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Panier panier) {
+	private void initialize(Panier panier, JButton boutonPanier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
@@ -113,19 +113,22 @@ public class FEN_Panier {
 		JButton Bnt_rec_panier = new JButton("Recalculer mon panier");
 		Bnt_rec_panier.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mousePressed(MouseEvent e) {
-				float prixsousTotal = 0.0F;
-				float prixTotalCalcul = 0.0F;
-				for (int i = 0; i < FEN_Panier.this.Tableau_Panier.getRowCount(); i++) {
-					prixsousTotal +=  Float.parseFloat(FEN_Panier.this.Tableau_Panier.getValueAt(i, 4).toString());
+			public void mouseClicked(MouseEvent e) {
+				float calculPrixSousTotal = panier.prixPanier();
+				String paternPrixSousTotal = new DecimalFormat("#.00").format(calculPrixSousTotal);
+				PrixSousTot.setText(paternPrixSousTotal+"€");
+				if (calculPrixSousTotal == 0.0F){
+					PrixSousTot.setText("00,00€");
 				}
-				String result = new DecimalFormat("#.00").format(prixsousTotal);
-				PrixSousTot.setText(result + "€");
-				calculerExpedition(comboBoxTranporteur, prixsousTotal  , prixExpedition);
-				prixTotalCalcul = prixsousTotal + Float.parseFloat(prixExpedition.getText());
-				String result2 = new DecimalFormat("#.00").format(prixTotalCalcul);
-				prixExpedition.setText(prixExpedition.getText() + "€");
-				prixTotal.setText(result2 + "€");
+				float calculPrixExpedition = panier.calculerExpedition(comboBoxTranporteur);
+				String paternPrixExpedition = new DecimalFormat("#.00").format(calculPrixExpedition);
+				prixExpedition.setText(paternPrixExpedition+"€");
+				if (calculPrixExpedition == 0.0F){
+					prixExpedition.setText("00,00€");
+				}
+				float calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+				String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
+				prixTotal.setText(paternPrixTotal+"€");
 			}
 		});
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -135,16 +138,17 @@ public class FEN_Panier {
 		panel_BntCalcul.add(Bnt_rec_panier);
 
 		this.Tableau_Panier = new JTable();
-		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
+		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 50));
 		this.Tableau_Panier = new JTable();
+		Tableau_Panier.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+			}
+		));
 		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
-		this.Tableau_Panier.getColumnModel().getColumn(0).setResizable(false);
-		this.Tableau_Panier.getColumnModel().getColumn(1).setResizable(false);
-		this.Tableau_Panier.getColumnModel().getColumn(2).setResizable(false);
-		this.Tableau_Panier.getColumnModel().getColumn(3).setResizable(false);
-		this.Tableau_Panier.getColumnModel().getColumn(4).setResizable(false);
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
 		for (int i = 0; i < panier.getSize(); i++) {
 			this.ajouterLigne(panier.getPanier().get(i));
@@ -185,10 +189,6 @@ public class FEN_Panier {
 		ImageetChoix.add(ImageCamion);
 
 		JPanel TotalPanier = new JPanel();
-
-		float prix_Panier = 0.0F;
-		
-
 		JLabel lblExpedition = new JLabel("Expédition :");
 		
 		ImageIcon colissimo = new ImageIcon("src\\main\\resources\\images\\icons\\Colissimo.png");
@@ -287,50 +287,15 @@ public class FEN_Panier {
 		btnViderPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier);
+				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier, panier, boutonPanier);
 				window.getFrame().setVisible(true);
 			}
 		});
 		panel_BntCont.add(btnViderPanier);
-
-		FEN_Panier.this.calculerExpedition(comboBoxTranporteur, prix_Panier, prixExpedition);
-
-	}
-
-	public void calculerExpedition(JComboBox<ImageIcon> comboBoxTranporteur, float prix_Panier, JLabel prixExpedition) {
-		float prix_expedition = 0.0F;
-		if (comboBoxTranporteur.getSelectedIndex() == 0 || comboBoxTranporteur.getSelectedIndex() == 1) {
-			if (prix_Panier < 60.0F) {
-				prix_expedition = 14.90F;
-			} else if (prix_Panier < 90.0F) {
-				prix_expedition = 9.90F;
-			} else if (prix_Panier < 120.0F) {
-				prix_expedition = 4.90F;
-			} else {
-				prix_expedition = 0.0F;
-			}
-		}
-		if (comboBoxTranporteur.getSelectedIndex() == 2) {
-			if (prix_Panier < 60.0F) {
-				prix_expedition = 23.90F;
-			} else if (prix_Panier < 90.0F) {
-				prix_expedition = 17.90F;
-			} else if (prix_Panier < 120.0F) {
-				prix_expedition = 9.90F;
-			} else {
-				prix_expedition = 0.0F;
-			}
-		}
-		
-		prixExpedition.setText(String.valueOf(prix_expedition));
 	}
 
 	public void ajouterLigne(ArticleEtQuantite articleEtQuantite) {
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.addRow(new Object[] { articleEtQuantite.getArticle().getFromage().getNomImage(), articleEtQuantite.getArticle().getFromage().getDésignation(), articleEtQuantite.getArticle().getPrixTTC(), articleEtQuantite.getQuantite(), articleEtQuantite.getArticle().getPrixTTC()*articleEtQuantite.getQuantite() });
-		/*
-		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
-		model.addRow(new Object[] { image, produit, prix, quantité, prix * quantité });
-		*/
 	}
 }
