@@ -262,16 +262,18 @@ public class FEN_Panier {
 		Button_ValiderPanier.setBackground(Constantes.VERT);
 		panel_BntVA.add(Button_ValiderPanier);
 
-		JButton Button_AnullerPanier = new JButton("Annuler");
-		Button_AnullerPanier.setBackground(Constantes.ROUGE);
-		panel_BntVA.add(Button_AnullerPanier);
-
 		JPanel panel_BntCont = new JPanel();
 		panel_BntCont.setBackground(Constantes.NOIR);
 		PiedDePage.add(panel_BntCont, BorderLayout.WEST);
 
 		JButton btnContinuerLesAchats = new JButton("Continuer les achats");
 		btnContinuerLesAchats.setBackground(Constantes.JAUNE);
+		btnContinuerLesAchats.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				frame.setVisible(false);
+			}
+		});
 		panel_BntCont.add(btnContinuerLesAchats);
 
 		JButton btnViderPanier = new JButton("Vider le panier");
