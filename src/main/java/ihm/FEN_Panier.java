@@ -25,9 +25,9 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
-import modele.Panier;
-import modele.Article;
+
 import modele.ArticleEtQuantite;
+import modele.Panier;
 
 public class FEN_Panier {
 
@@ -111,7 +111,26 @@ public class FEN_Panier {
 		JLabel prixTotal = new JLabel("");
 		JComboBox<ImageIcon> comboBoxTranporteur = new JComboBox<ImageIcon>();
 		JButton Bnt_rec_panier = new JButton("Recalculer mon panier");
-		recalculerPanier(PrixSousTot, prixExpedition, prixTotal, comboBoxTranporteur, Bnt_rec_panier);
+		Bnt_rec_panier.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				float calculPrixSousTotal = panier.prixPanier();
+				String paternPrixSousTotal = new DecimalFormat("#.00").format(calculPrixSousTotal);
+				PrixSousTot.setText(paternPrixSousTotal+"€");
+				if (calculPrixSousTotal == 0.0F){
+					PrixSousTot.setText("00,00€");
+				}
+				float calculPrixExpedition = panier.calculerExpedition(comboBoxTranporteur);
+				String paternPrixExpedition = new DecimalFormat("#.00").format(calculPrixExpedition);
+				prixExpedition.setText(paternPrixExpedition+"€");
+				if (calculPrixExpedition == 0.0F){
+					prixExpedition.setText("00,00€");
+				}
+				float calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+				String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
+				prixTotal.setText(paternPrixTotal+"€");
+			}
+		});
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
 		Bnt_rec_panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		Bnt_rec_panier.setBackground(Constantes.JAUNE);
@@ -119,7 +138,7 @@ public class FEN_Panier {
 		panel_BntCalcul.add(Bnt_rec_panier);
 
 		this.Tableau_Panier = new JTable();
-		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
+		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 50));
 		this.Tableau_Panier = new JTable();
 		Tableau_Panier.setModel(new DefaultTableModel(
 			new Object[][] {
@@ -278,59 +297,6 @@ public class FEN_Panier {
 			}
 		});
 		panel_BntCont.add(btnViderPanier);
-
-		FEN_Panier.this.calculerExpedition(comboBoxTranporteur, prix_Panier, prixExpedition);
-		
-	
-	}
-
-	public void recalculerPanier(JLabel PrixSousTot, JLabel prixExpedition, JLabel prixTotal,
-			JComboBox<ImageIcon> comboBoxTranporteur, JButton Bnt_rec_panier) {
-		Bnt_rec_panier.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				float prixsousTotal = 0.0F;
-				float prixTotalCalcul = 0.0F;
-				for (int i = 0; i < FEN_Panier.this.Tableau_Panier.getRowCount(); i++) {
-					prixsousTotal +=  Float.parseFloat(FEN_Panier.this.Tableau_Panier.getValueAt(i, 4).toString());
-				}
-				String result = new DecimalFormat("#.00").format(prixsousTotal);
-				PrixSousTot.setText(result + "€");
-				calculerExpedition(comboBoxTranporteur, prixsousTotal  , prixExpedition);
-				prixTotalCalcul = prixsousTotal + Float.parseFloat(prixExpedition.getText());
-				String result2 = new DecimalFormat("#.00").format(prixTotalCalcul);
-				prixExpedition.setText(prixExpedition.getText() + "€");
-				prixTotal.setText(result2 + "€");
-			}
-		});
-	}
-
-	public void calculerExpedition(JComboBox<ImageIcon> comboBoxTranporteur, float prix_Panier, JLabel prixExpedition) {
-		float prix_expedition = 0.0F;
-		if (comboBoxTranporteur.getSelectedIndex() == 0 || comboBoxTranporteur.getSelectedIndex() == 1) {
-			if (prix_Panier < 60.0F) {
-				prix_expedition = 14.90F;
-			} else if (prix_Panier < 90.0F) {
-				prix_expedition = 9.90F;
-			} else if (prix_Panier < 120.0F) {
-				prix_expedition = 4.90F;
-			} else {
-				prix_expedition = 0.0F;
-			}
-		}
-		if (comboBoxTranporteur.getSelectedIndex() == 2) {
-			if (prix_Panier < 60.0F) {
-				prix_expedition = 23.90F;
-			} else if (prix_Panier < 90.0F) {
-				prix_expedition = 17.90F;
-			} else if (prix_Panier < 120.0F) {
-				prix_expedition = 9.90F;
-			} else {
-				prix_expedition = 0.0F;
-			}
-		}
-		
-		prixExpedition.setText(String.valueOf(prix_expedition));
 	}
 
 	public void ajouterLigne(ArticleEtQuantite articleEtQuantite) {
