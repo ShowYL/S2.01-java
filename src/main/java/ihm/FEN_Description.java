@@ -190,13 +190,7 @@ public class FEN_Description {
 		btn_add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				FEN_Panier fenpanier = new FEN_Panier();
-				fenpanier.ajouterLigne(
-						new ImageIcon("src\\main\\resources\\images\\fromages\\hauteur200\\" + fromage.getNomImage()
-								+ ".jpg"),
-						articles.get(prix.getSelectedIndex()).getFromage().getDésignation(),
-						articles.get(prix.getSelectedIndex()).getPrixTTC(),
-						quantite.getComponentCount());
+				articles.get(prix.getSelectedIndex()).retirerQuantité(quantite.getComponentCount());
 			}
 		});
 		btn_add.setBackground(Constantes.VERT);

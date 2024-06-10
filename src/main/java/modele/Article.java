@@ -41,6 +41,10 @@ public class Article {
 		this.quantitéEnStock -= quantité;
 	}
 
+	public void retirerQuantité(int quantité) {
+		this.quantitéEnStock -= quantité;
+	}
+
 	public void rendreQuantité(int quantité) {
 		this.quantitéEnStock += quantité;
 	}
