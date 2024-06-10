@@ -314,7 +314,7 @@ public class FEN_Panier {
 				prix_expedition = 0.0F;
 			}
 		}
-
+		
 		prixExpedition.setText(String.valueOf(prix_expedition));
 	}
 
