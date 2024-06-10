@@ -258,7 +258,6 @@ public class FEN_Panier {
 			public void mouseClicked(MouseEvent e) {
 				if (Tableau_Panier.getRowCount() > 0){
 					FEN_Coordonnee window = new FEN_Coordonnee();
-					FEN_Panier.this.frame.setVisible(false);
 					window.getFrame().setVisible(true);
 				}else{
 					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();

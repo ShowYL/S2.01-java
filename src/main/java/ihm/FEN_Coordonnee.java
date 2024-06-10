@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import modele.Coordonnee;
+
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 
@@ -15,15 +18,19 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 
+import modele.Panier;
+
 public class FEN_Coordonnee {
 
 	private JFrame frame;
+	protected String payementMethode;
 
 	/**
 	 * Launch the application.
@@ -32,7 +39,8 @@ public class FEN_Coordonnee {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FEN_Coordonnee window = new FEN_Coordonnee();
+					Panier panier = new Panier();
+					FEN_Coordonnee window = new FEN_Coordonnee(panier);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -44,8 +52,8 @@ public class FEN_Coordonnee {
 	/**
 	 * Create the application.
 	 */
-	public FEN_Coordonnee() {
-		initialize();
+	public FEN_Coordonnee(Panier panier) {
+		initialize(panier);
 	}
 
 	public JFrame getFrame() {
@@ -55,7 +63,7 @@ public class FEN_Coordonnee {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(Panier panier) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -89,17 +97,22 @@ public class FEN_Coordonnee {
 		JPanel panelCentreOuest = new JPanel(new GridLayout(8, 2));
 		panelCentre.add(panelCentreOuest, BorderLayout.WEST);
 
-		String[] labels = { "Nom : ", "Prénom : ", "Adresse 1 : ", "Adresse 2 : ", "Code Postal : ", "Ville ; ",
-				"Téléphone : ", "Mail : " };
+		String[] labels = { "Nom : ", "Prénom : ", "Adresse 1 : ", "Adresse 2 : ", "Code Postal : ", "Ville ; ", "Téléphone : ", "Mail : " };
 
+		ArrayList<JTextField> textFields = new ArrayList<>();
+		
 		for (int i = 0; i < 8; i++) {
 			JLabel label = new JLabel(labels[i]);
 			label.setHorizontalAlignment(JLabel.RIGHT);
 			JTextField textField = new JTextField();
 			textField.setPreferredSize(new Dimension(150, 0));
+		
+			textFields.add(textField);
+		
 			panelCentreOuest.add(label);
 			panelCentreOuest.add(textField);
 		}
+		
 
 		JPanel panelCentreEst = new JPanel();
 		panelCentre.add(panelCentreEst, BorderLayout.EAST);
@@ -125,6 +138,12 @@ public class FEN_Coordonnee {
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit           ");
 		rdbtnNewRadioButton.setBackground(Constantes.BLANC);
 		JLabel imageCB = new JLabel(icon2);
+		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				payementMethode = "Carte de crédit";
+			}
+		});
 		panelCB.add(rdbtnNewRadioButton);
 		panelCB.add(imageCB);
 		panelCB.setBackground(Constantes.BLANC);
@@ -137,6 +156,12 @@ public class FEN_Coordonnee {
 		JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Paypal                       ");
 		rdbtnNewRadioButton2.setBackground(Constantes.BLANC);
 		JLabel imagePaypal = new JLabel(icon3);
+		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				payementMethode = "Paypal";
+			}
+		});
 		panelPaypal.add(rdbtnNewRadioButton2);
 		panelPaypal.add(imagePaypal);
 		panelPaypal.setBackground(Constantes.BLANC);
@@ -149,6 +174,12 @@ public class FEN_Coordonnee {
 		JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Payement par chèque");
 		rdbtnNewRadioButton3.setBackground(Constantes.BLANC);
 		JLabel imageCheque = new JLabel(icon4);
+		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				payementMethode = "Payement par chèque";
+			}
+		});
 		panelCheque.add(rdbtnNewRadioButton3);
 		panelCheque.add(imageCheque);
 		panelCheque.setBackground(Constantes.BLANC);
@@ -192,10 +223,24 @@ public class FEN_Coordonnee {
 		JButton btnNewButton = new JButton("Valider");
 		btnNewButton.setBackground(Constantes.VERT);
 		panel.add(btnNewButton);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				Coordonnee coordonnee = new Coordonnee(textFields.get(0).getText(), textFields.get(1).getText(), textFields.get(2).getText(), textFields.get(3).getText(), textFields.get(4).getText(), textFields.get(5).getText(), textFields.get(7).getText(), payementMethode, textFields.get(6).getText());
+				FEN_Facture window = new FEN_Facture(panier,coordonnee);
+				window.getFrame().setVisible(true);
+			}
+		});
 
 		JButton btnNewButton_1 = new JButton("Annuler");
 		btnNewButton_1.setBackground(Constantes.ROUGE);
 		panel.add(btnNewButton_1);
+		btnNewButton_1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e){
+				frame.setVisible(false);
+			}
+		});
 
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
