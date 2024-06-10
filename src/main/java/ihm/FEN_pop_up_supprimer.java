@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +32,8 @@ public class FEN_pop_up_supprimer {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					FEN_pop_up_supprimer window = new FEN_pop_up_supprimer();
+					JTable Tableau_Panier = new JTable(); // Define the JTable here
+					FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +49,7 @@ public class FEN_pop_up_supprimer {
 	/**
 	 * Create the frame.
 	 */
-	public FEN_pop_up_supprimer() {
+	public FEN_pop_up_supprimer(JTable Tableau_Panier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		frame = new JFrame();
@@ -88,8 +90,7 @@ public class FEN_pop_up_supprimer {
 		btn1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-				FEN_Panier window = new FEN_Panier();
-				DefaultTableModel model = (DefaultTableModel) window.getTableau().getModel();
+				DefaultTableModel model = (DefaultTableModel) Tableau_Panier.getModel();
 				for(int i = model.getRowCount()-1 ; i>=0;i--){
 					model.removeRow(i);
 				}
@@ -97,6 +98,7 @@ public class FEN_pop_up_supprimer {
 			}
 		});
 		panel1.add(btn1);
+		
 		
 		JButton btn2 = new JButton("Non");
 		btn2.setBackground(Constantes.ROUGE);
