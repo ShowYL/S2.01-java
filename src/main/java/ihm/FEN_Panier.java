@@ -189,10 +189,6 @@ public class FEN_Panier {
 		ImageetChoix.add(ImageCamion);
 
 		JPanel TotalPanier = new JPanel();
-
-		float prix_Panier = 0.0F;
-		
-
 		JLabel lblExpedition = new JLabel("Expédition :");
 		
 		ImageIcon colissimo = new ImageIcon("src\\main\\resources\\images\\icons\\Colissimo.png");
