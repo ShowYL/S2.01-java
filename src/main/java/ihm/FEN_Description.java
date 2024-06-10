@@ -193,17 +193,21 @@ public class FEN_Description {
 			public void actionPerformed(ActionEvent e) {
 				articles.get(prix.getSelectedIndex()).retirerQuantité((int) quantite.getValue());
 				boolean b = false;
-				
-				for (int i = 0 ; i < panier.getSize() ; i++) {
-					if (panier.getPanier().get(i).getArticle().getFromage().getDésignation() == articles.get(prix.getSelectedIndex()).getFromage().getDésignation()) {
-						panier.getPanier().get(i).changerQuantite(panier.getPanier().get(i).getQuantite()+(int) quantite.getValue());
+
+				for (int i = 0; i < panier.getSize(); i++) {
+					if (panier.getPanier().get(i).getArticle().getFromage().getDésignation() == articles
+							.get(prix.getSelectedIndex()).getFromage().getDésignation()) {
+						panier.getPanier().get(i)
+								.changerQuantite(panier.getPanier().get(i).getQuantite() + (int) quantite.getValue());
 						b = true;
 					}
 				}
 				if (!b) {
-					ArticleEtQuantite article = new ArticleEtQuantite(articles.get(prix.getSelectedIndex()),(int) quantite.getValue());		
+					ArticleEtQuantite article = new ArticleEtQuantite(articles.get(prix.getSelectedIndex()),
+							(int) quantite.getValue());
 					panier.ajouterArticle(article);
 				}
+				frame.dispose();
 			}
 		});
 		btn_add.setBackground(Constantes.VERT);
