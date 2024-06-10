@@ -179,7 +179,7 @@ public class FEN_Description {
 			i++;
 		}
 		JSpinner quantite = new JSpinner();
-		quantite.setModel(new SpinnerNumberModel(0, 0, (int) listequantité[prix.getSelectedIndex()], 1));
+		quantite.setModel(new SpinnerNumberModel(1, 1, (int) listequantité[prix.getSelectedIndex()], 1));
 		panel_prix.add(quantite);
 
 		JPanel panel_validation_annulation = new JPanel();
