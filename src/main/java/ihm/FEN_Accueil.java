@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
@@ -30,10 +32,8 @@ import javax.swing.border.LineBorder;
 import modele.Fromage;
 import modele.Fromages;
 import modele.GenerationFromages;
-import modele.TypeLait;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import modele.Panier;
+import modele.TypeLait;
 
 public class FEN_Accueil {
 
