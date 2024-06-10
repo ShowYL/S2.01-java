@@ -253,9 +253,14 @@ public class FEN_Panier {
 		Button_ValiderPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FEN_Coordonnee window = new FEN_Coordonnee();
-				FEN_Panier.this.frame.setVisible(false);
-				window.getFrame().setVisible(true);
+				if (Tableau_Panier.getRowCount() > 0){
+					FEN_Coordonnee window = new FEN_Coordonnee();
+					FEN_Panier.this.frame.setVisible(false);
+					window.getFrame().setVisible(true);
+				}else{
+					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();
+					window.getFrame().setVisible(true);
+				}
 			}
 		});
 		Button_ValiderPanier.setBackground(Constantes.VERT);
