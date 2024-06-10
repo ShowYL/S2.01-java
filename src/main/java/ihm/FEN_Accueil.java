@@ -33,10 +33,12 @@ import modele.GenerationFromages;
 import modele.TypeLait;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import modele.Panier;
 
 public class FEN_Accueil {
 
 	private JFrame frame;
+	private Panier panier;
 
 	/**
 	 * Launch the application.
@@ -75,6 +77,7 @@ public class FEN_Accueil {
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
 		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
 
+		panier = new Panier();
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -133,10 +136,10 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					int index = Centre_liste.locationToIndex(e.getPoint());
-					String selectedItem = listefromage.get(index);
-					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem));
-					fenDescription.getFrame().setVisible(true);
+					int index = Centre_liste.locationToIndex(e.getPoint()); 
+				   	String selectedItem = listefromage.get(index);
+					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem),panier);
+				   	fenDescription.getFrame().setVisible(true);
 				}
 			}
 		});
@@ -183,9 +186,8 @@ public class FEN_Accueil {
 		Panier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FEN_Panier window = new FEN_Panier();
-				int count = window.getTableau().getModel().getRowCount();
-				if (count == 0) {
+				FEN_Panier window = new FEN_Panier(panier);
+				if(panier.estVide()){
 					FEN_pop_up_panier_vide panierVide = new FEN_pop_up_panier_vide();
 					panierVide.getFrame().setVisible(true);
 				} else {

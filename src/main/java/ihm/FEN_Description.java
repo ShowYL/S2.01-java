@@ -30,6 +30,7 @@ import javax.swing.border.LineBorder;
 
 import modele.Article;
 import modele.Fromage;
+import modele.Panier;
 
 public class FEN_Description {
 
@@ -43,7 +44,7 @@ public class FEN_Description {
 			@Override
 			public void run() {
 				try {
-					FEN_Description window = new FEN_Description(new Fromage("test"));
+					FEN_Description window = new FEN_Description(new Fromage("test"), new Panier());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,16 +56,15 @@ public class FEN_Description {
 	/**
 	 * Create the frame.
 	 */
-	public FEN_Description(Fromage fromage) {
-		initialize(fromage);
+	public FEN_Description(Fromage fromage, Panier panier) {
+		initialize(fromage, panier);
 	}
 
 	public JFrame getFrame() {
 		return this.frame;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private void initialize(Fromage fromage) {
+	private void initialize(Fromage fromage, Panier panier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
 		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
@@ -190,7 +190,16 @@ public class FEN_Description {
 		btn_add.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				articles.get(prix.getSelectedIndex()).retirerQuantité(quantite.getComponentCount());
+				/*
+				FEN_Panier fenpanier = new FEN_Panier();
+				fenpanier.ajouterLigne(
+						new ImageIcon("src\\main\\resources\\images\\fromages\\hauteur200\\" + fromage.getNomImage()
+								+ ".jpg"),
+						articles.get(prix.getSelectedIndex()).getFromage().getDésignation(),
+						articles.get(prix.getSelectedIndex()).getPrixTTC(),
+						quantite.getComponentCount());
+				*/
+				panier.ajouterArticle(articles.get(prix.getSelectedIndex()));
 			}
 		});
 		btn_add.setBackground(Constantes.VERT);
