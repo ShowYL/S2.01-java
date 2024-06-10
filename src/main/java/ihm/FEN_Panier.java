@@ -33,7 +33,6 @@ public class FEN_Panier {
 
 	private JFrame frame;
 	private JTable Tableau_Panier;
-	private JTable Tableau_Panier_1;
 
 	/**
 	 * Launch the application.
@@ -64,7 +63,7 @@ public class FEN_Panier {
 	}
 
 	public JTable getTableau() {
-		return this.Tableau_Panier_1;
+		return this.Tableau_Panier;
 	}
 
 	/**
@@ -121,17 +120,17 @@ public class FEN_Panier {
 
 		this.Tableau_Panier = new JTable();
 		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
-		this.Tableau_Panier_1 = new JTable();
-		Tableau_Panier_1.setModel(new DefaultTableModel(
+		this.Tableau_Panier = new JTable();
+		Tableau_Panier.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 			}
 		));
-		this.Tableau_Panier_1.setFont(new Font("Alef", Font.PLAIN, 10));
-		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier_1.getModel();
+		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
+		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
-		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier_1));
+		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
 		for (int i = 0; i < panier.getSize(); i++) {
 			this.ajouterLigne(panier.getPanier().get(i));
 		}
@@ -282,18 +281,7 @@ public class FEN_Panier {
 
 		FEN_Panier.this.calculerExpedition(comboBoxTranporteur, prix_Panier, prixExpedition);
 		
-		float prixsousTotal = 0.0F;
-		float prixTotalCalcul = 0.0F;
-		for (int i = 0; i < FEN_Panier.this.Tableau_Panier.getRowCount(); i++) {
-			prixsousTotal +=  Float.parseFloat(FEN_Panier.this.Tableau_Panier.getValueAt(i, 4).toString());
-		}
-		String result = new DecimalFormat("#.00").format(prixsousTotal);
-		PrixSousTot.setText(result + "€");
-		calculerExpedition(comboBoxTranporteur, prixsousTotal  , prixExpedition);
-		prixTotalCalcul = prixsousTotal + Float.parseFloat(prixExpedition.getText());
-		String result2 = new DecimalFormat("#.00").format(prixTotalCalcul);
-		prixExpedition.setText(prixExpedition.getText() + "€");
-		prixTotal.setText(result2 + "€");
+	
 	}
 
 	public void recalculerPanier(JLabel PrixSousTot, JLabel prixExpedition, JLabel prixTotal,
@@ -346,11 +334,7 @@ public class FEN_Panier {
 	}
 
 	public void ajouterLigne(ArticleEtQuantite articleEtQuantite) {
-		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier_1.getModel();
-		model.addRow(new Object[] { articleEtQuantite.getArticle().getFromage().getNomImage(), articleEtQuantite.getArticle().getFromage().getDésignation(), articleEtQuantite.getArticle().getPrixTTC(), articleEtQuantite.getQuantite(), articleEtQuantite.getArticle().getPrixTTC()*articleEtQuantite.getQuantite() });
-		/*
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
-		model.addRow(new Object[] { image, produit, prix, quantité, prix * quantité });
-		*/
+		model.addRow(new Object[] { articleEtQuantite.getArticle().getFromage().getNomImage(), articleEtQuantite.getArticle().getFromage().getDésignation(), articleEtQuantite.getArticle().getPrixTTC(), articleEtQuantite.getQuantite(), articleEtQuantite.getArticle().getPrixTTC()*articleEtQuantite.getQuantite() });
 	}
 }

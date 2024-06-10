@@ -92,6 +92,7 @@ public class FEN_pop_up_supprimer {
 					model.removeRow(i);
 					panier.getPanier().get(i).getArticle().setQuantitéEnStock(panier.getPanier().get(i).getQuantite());
 				}
+				panier.getPanier().clear();
 				boutonPanier.setText("00,00 €");
 				frame.setVisible(false);
 			}
