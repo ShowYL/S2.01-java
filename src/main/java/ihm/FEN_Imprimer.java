@@ -1,7 +1,6 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -14,8 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
 
 public class FEN_Imprimer {
 
@@ -59,12 +56,12 @@ public class FEN_Imprimer {
         
         JPanel panel = new JPanel();
 		panel.setBackground(Constantes.NOIR);
-		panel.setForeground(new Color(0, 0, 0));
+		panel.setForeground(Constantes.NOIR);
 		frame.getContentPane().add(panel, BorderLayout.NORTH);
 		
 		JLabel titre = new JLabel("Imprimer");
 		titre.setHorizontalAlignment(SwingConstants.CENTER);
-		titre.setForeground(Color.WHITE);
+		titre.setForeground(Constantes.BLANC);
 		titre.setFont(new Font("Tw Cen MT Condensed Extra Bold", Font.PLAIN, 36));
 		titre.setBorder(new EmptyBorder(11, 0, 15, 0));
 		panel.add(titre);

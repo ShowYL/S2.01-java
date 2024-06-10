@@ -1,7 +1,6 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -64,6 +63,7 @@ public class FEN_Description {
 		return this.frame;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize(Fromage fromage) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran

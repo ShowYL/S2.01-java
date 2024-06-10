@@ -1,7 +1,6 @@
 package ihm;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
@@ -70,6 +69,7 @@ public class FEN_Accueil {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
@@ -133,10 +133,10 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					int index = Centre_liste.locationToIndex(e.getPoint()); 
-				   	String selectedItem = listefromage.get(index);
+					int index = Centre_liste.locationToIndex(e.getPoint());
+					String selectedItem = listefromage.get(index);
 					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem));
-				   	fenDescription.getFrame().setVisible(true);
+					fenDescription.getFrame().setVisible(true);
 				}
 			}
 		});
@@ -184,11 +184,11 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				FEN_Panier window = new FEN_Panier();
-				int count= window.getTableau().getModel().getRowCount();
-				if(count==0){
+				int count = window.getTableau().getModel().getRowCount();
+				if (count == 0) {
 					FEN_pop_up_panier_vide panierVide = new FEN_pop_up_panier_vide();
 					panierVide.getFrame().setVisible(true);
-				}else{
+				} else {
 					window.getFrame().setVisible(true);
 				}
 			}
@@ -203,18 +203,18 @@ public class FEN_Accueil {
 				Fromages tousfromages = generation.générationBaseFromages();
 				List<Fromage> listefromages = new LinkedList<Fromage>();
 				switch (i) {
-				case 0:
-					listefromages = tousfromages.getFromages();
-					break;
-				case 1:
-					listefromages = tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Vache"));
-					break;
-				case 2:
-					listefromages = tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Chèvre"));
-					break;
-				case 3:
-					listefromages = tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Brebis"));
-					break;
+					case 0:
+						listefromages = tousfromages.getFromages();
+						break;
+					case 1:
+						listefromages = tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Vache"));
+						break;
+					case 2:
+						listefromages = tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Chèvre"));
+						break;
+					case 3:
+						listefromages = tousfromages.fromagesAuLaitDe(TypeLait.getTypeLait("Brebis"));
+						break;
 				}
 				ArrayList<String> tabfromage = new ArrayList<>();
 				for (Fromage f : listefromages) {
