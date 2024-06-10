@@ -200,9 +200,7 @@ public class FEN_Coordonnee {
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FEN_Panier window = new FEN_Panier();
 				frame.setVisible(false);
-				window.getFrame().setVisible(true);
 			}
 		});
 
