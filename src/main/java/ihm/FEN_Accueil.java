@@ -118,7 +118,7 @@ public class FEN_Accueil {
 		JButton Quitter_Button = new JButton("Quitter");
 		Quitter_Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				System.exit(0);
 			}
 		});
 		Quitter_Button.setBackground(Constantes.ROUGE);
