@@ -25,5 +25,13 @@ public class Panier {
 	public void ajouterArticle(ArticleEtQuantite article) {
 		this.liste_P.add(article);
 	}
+	
+	public float prixPanier() {
+		float somme = 0.0F;
+		for (ArticleEtQuantite articleEtQuantite : this.liste_P) {
+			somme += articleEtQuantite.getArticle().getPrixTTC() * articleEtQuantite.getQuantite();
+		}
+		return somme;
+	}
 
 }
