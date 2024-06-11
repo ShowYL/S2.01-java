@@ -40,7 +40,8 @@ public class FEN_Coordonnee {
 			public void run() {
 				try {
 					Panier panier = new Panier();
-					FEN_Coordonnee window = new FEN_Coordonnee(panier);
+					float calculPrixTotal = 0.0F;
+					FEN_Coordonnee window = new FEN_Coordonnee(panier,calculPrixTotal);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,8 +53,8 @@ public class FEN_Coordonnee {
 	/**
 	 * Create the application.
 	 */
-	public FEN_Coordonnee(Panier panier) {
-		initialize(panier);
+	public FEN_Coordonnee(Panier panier, float calculPrixTotal) {
+		initialize(panier,calculPrixTotal);
 	}
 
 	public JFrame getFrame() {
@@ -63,7 +64,7 @@ public class FEN_Coordonnee {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Panier panier) {
+	private void initialize(Panier panier, float calculPrixTotal) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -226,8 +227,8 @@ public class FEN_Coordonnee {
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
-				Coordonnee coordonnee = new Coordonnee(textFields.get(0).getText(), textFields.get(1).getText(), textFields.get(2).getText(), textFields.get(3).getText(), textFields.get(4).getText(), textFields.get(5).getText(), textFields.get(7).getText(), payementMethode, textFields.get(6).getText());
-				FEN_Facture window = new FEN_Facture(panier,coordonnee);
+				Coordonnee coordonnee = new Coordonnee(textFields.get(1).getText(), textFields.get(0).getText(), textFields.get(2).getText(), textFields.get(3).getText(), textFields.get(4).getText(), textFields.get(5).getText(), textFields.get(7).getText(), payementMethode, textFields.get(6).getText());
+				FEN_Facture window = new FEN_Facture(panier,coordonnee,calculPrixTotal);
 				window.getFrame().setVisible(true);
 			}
 		});

@@ -33,6 +33,7 @@ public class FEN_Panier {
 
 	private JFrame frame;
 	private JTable Tableau_Panier;
+	private float calculPrixTotal;
 
 	/**
 	 * Launch the application.
@@ -126,7 +127,7 @@ public class FEN_Panier {
 				if (calculPrixExpedition == 0.0F){
 					prixExpedition.setText("00,00€");
 				}
-				float calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+				calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
 				String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
 				prixTotal.setText(paternPrixTotal+"€");
 			}
@@ -151,7 +152,8 @@ public class FEN_Panier {
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
 		for (int i = 0; i < panier.getSize(); i++) {
-			this.ajouterLigne(panier.getPanier().get(i));
+			DefaultTableModel modele = (DefaultTableModel) this.Tableau_Panier.getModel();
+			modele.addRow(new Object[] { panier.getPanier().get(i).getArticle().getFromage().getNomImage(), panier.getPanier().get(i).getArticle().getFromage().getDésignation(), panier.getPanier().get(i).getArticle().getPrixTTC(), panier.getPanier().get(i).getQuantite(), panier.getPanier().get(i).getArticle().getPrixTTC()*panier.getPanier().get(i).getQuantite() });
 		}
 		JPanel TrasporteurEtTotal = new JPanel();
 		TrasporteurEtTotal.setBackground(Constantes.GRIS_CLAIR);
@@ -257,7 +259,7 @@ public class FEN_Panier {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (Tableau_Panier.getRowCount() > 0){
-					FEN_Coordonnee window = new FEN_Coordonnee();
+					FEN_Coordonnee window = new FEN_Coordonnee(panier,calculPrixTotal);
 					window.getFrame().setVisible(true);
 				}else{
 					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();
@@ -292,10 +294,5 @@ public class FEN_Panier {
 			}
 		});
 		panel_BntCont.add(btnViderPanier);
-	}
-
-	public void ajouterLigne(ArticleEtQuantite articleEtQuantite) {
-		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
-		model.addRow(new Object[] { articleEtQuantite.getArticle().getFromage().getNomImage(), articleEtQuantite.getArticle().getFromage().getDésignation(), articleEtQuantite.getArticle().getPrixTTC(), articleEtQuantite.getQuantite(), articleEtQuantite.getArticle().getPrixTTC()*articleEtQuantite.getQuantite() });
 	}
 }
