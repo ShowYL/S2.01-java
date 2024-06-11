@@ -26,7 +26,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modele.ArticleEtQuantite;
 import modele.Panier;
 
 public class FEN_Panier {
@@ -71,6 +70,7 @@ public class FEN_Panier {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Panier panier, JButton boutonPanier) {
+
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
@@ -117,19 +117,19 @@ public class FEN_Panier {
 			public void mouseClicked(MouseEvent e) {
 				float calculPrixSousTotal = panier.prixPanier();
 				String paternPrixSousTotal = new DecimalFormat("#.00").format(calculPrixSousTotal);
-				PrixSousTot.setText(paternPrixSousTotal+"€");
-				if (calculPrixSousTotal == 0.0F){
+				PrixSousTot.setText(paternPrixSousTotal + "€");
+				if (calculPrixSousTotal == 0.0F) {
 					PrixSousTot.setText("00,00€");
 				}
 				float calculPrixExpedition = panier.calculerExpedition(comboBoxTranporteur);
 				String paternPrixExpedition = new DecimalFormat("#.00").format(calculPrixExpedition);
-				prixExpedition.setText(paternPrixExpedition+"€");
-				if (calculPrixExpedition == 0.0F){
+				prixExpedition.setText(paternPrixExpedition + "€");
+				if (calculPrixExpedition == 0.0F) {
 					prixExpedition.setText("00,00€");
 				}
 				calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
 				String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
-				prixTotal.setText(paternPrixTotal+"€");
+				prixTotal.setText(paternPrixTotal + "€");
 			}
 		});
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -142,18 +142,20 @@ public class FEN_Panier {
 		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 50));
 		this.Tableau_Panier = new JTable();
 		Tableau_Panier.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-			}
-		));
+				new Object[][] {
+				},
+				new String[] {
+				}));
 		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
 		this.frame.getContentPane().add(new JScrollPane(this.Tableau_Panier));
 		for (int i = 0; i < panier.getSize(); i++) {
 			DefaultTableModel modele = (DefaultTableModel) this.Tableau_Panier.getModel();
-			modele.addRow(new Object[] { panier.getPanier().get(i).getArticle().getFromage().getNomImage(), panier.getPanier().get(i).getArticle().getFromage().getDésignation(), panier.getPanier().get(i).getArticle().getPrixTTC(), panier.getPanier().get(i).getQuantite(), panier.getPanier().get(i).getArticle().getPrixTTC()*panier.getPanier().get(i).getQuantite() });
+			modele.addRow(new Object[] { panier.getPanier().get(i).getArticle().getFromage().getNomImage(),
+					panier.getPanier().get(i).getArticle().getFromage().getDésignation(),
+					panier.getPanier().get(i).getArticle().getPrixTTC(), panier.getPanier().get(i).getQuantite(),
+					panier.getPanier().get(i).getArticle().getPrixTTC() * panier.getPanier().get(i).getQuantite() });
 		}
 		JPanel TrasporteurEtTotal = new JPanel();
 		TrasporteurEtTotal.setBackground(Constantes.GRIS_CLAIR);
@@ -192,7 +194,7 @@ public class FEN_Panier {
 
 		JPanel TotalPanier = new JPanel();
 		JLabel lblExpedition = new JLabel("Expédition :");
-		
+
 		ImageIcon colissimo = new ImageIcon("src\\main\\resources\\images\\icons\\Colissimo.png");
 		ImageIcon chronofresh = new ImageIcon("src\\main\\resources\\images\\icons\\Chronofresh.png");
 		ImageIcon chronorelais = new ImageIcon("src\\main\\resources\\images\\icons\\Chronorelais.png");
@@ -234,7 +236,6 @@ public class FEN_Panier {
 		lblTotal.setFont(new Font("Alef", Font.PLAIN, 10));
 		TotalPanier.add(lblTotal);
 
-	
 		prixTotal.setOpaque(true);
 		prixTotal.setHorizontalAlignment(SwingConstants.RIGHT);
 		prixTotal.setBackground(Constantes.ORANGE);
@@ -258,10 +259,10 @@ public class FEN_Panier {
 		Button_ValiderPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (Tableau_Panier.getRowCount() > 0){
-					FEN_Coordonnee window = new FEN_Coordonnee(panier,calculPrixTotal);
+				if (Tableau_Panier.getRowCount() > 0) {
+					FEN_Coordonnee window = new FEN_Coordonnee(panier, calculPrixTotal);
 					window.getFrame().setVisible(true);
-				}else{
+				} else {
 					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();
 					window.getFrame().setVisible(true);
 				}
@@ -278,7 +279,7 @@ public class FEN_Panier {
 		btnContinuerLesAchats.setBackground(Constantes.JAUNE);
 		btnContinuerLesAchats.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
+			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
 			}
 		});
@@ -288,11 +289,27 @@ public class FEN_Panier {
 		btnViderPanier.setBackground(Constantes.ORANGE);
 		btnViderPanier.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
+			public void mouseClicked(MouseEvent e) {
 				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier, panier, boutonPanier);
 				window.getFrame().setVisible(true);
 			}
 		});
 		panel_BntCont.add(btnViderPanier);
+
+		float calculPrixSousTotal = panier.prixPanier();
+		String paternPrixSousTotal = new DecimalFormat("#.00").format(calculPrixSousTotal);
+		PrixSousTot.setText(paternPrixSousTotal + "€");
+		if (calculPrixSousTotal == 0.0F) {
+			PrixSousTot.setText("00,00€");
+		}
+		float calculPrixExpedition = panier.calculerExpedition(comboBoxTranporteur);
+		String paternPrixExpedition = new DecimalFormat("#.00").format(calculPrixExpedition);
+		prixExpedition.setText(paternPrixExpedition + "€");
+		if (calculPrixExpedition == 0.0F) {
+			prixExpedition.setText("00,00€");
+		}
+		calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+		String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
+		prixTotal.setText(paternPrixTotal + "€");
 	}
 }
