@@ -159,7 +159,11 @@ public class FEN_Facture {
         textArea2.setEditable(false);
         textArea2.append("\n\nTOTAL TTC Commande : " + panier.prixPanier() + "€ par " + coordonnee.getPayementMethode() + "\n");
         float fraisTransport = calculPrixTotal - panier.prixPanier();
-        textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par " + "\n");
+        if (fraisTransport == 0.0F){
+            textArea2.append("FRAIS DE TRANSPORT : 00.00€ par \n");
+        }else{
+            textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par " + "\n");
+        }
         textArea2.append("PRIX TOTAL TTC : "+calculPrixTotal+"€");
 
         invoicePanel.add(textArea2, BorderLayout.SOUTH);
