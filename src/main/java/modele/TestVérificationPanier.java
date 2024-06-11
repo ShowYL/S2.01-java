@@ -1,5 +1,6 @@
 package modele;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import javax.swing.JButton;
@@ -10,10 +11,10 @@ import ihm.FEN_Panier;
 
 public class TestVérificationPanier {
 
-    private FEN_Panier Paniertest;
+    private Panier Paniertest;
 
     public void setUp() throws Exception {
-        this.Paniertest = new FEN_Panier(new Panier(), new JButton());
+        this.Paniertest = new Panier();
     }
 
     public void tearDown() throws Exception {
@@ -25,12 +26,7 @@ public class TestVérificationPanier {
         Fromage fromagetest = new Fromage("Fromage de brebis");
         Article articletest = new Article(fromagetest, "250g", 2.5F);
         ArticleEtQuantite testarticleqt = new ArticleEtQuantite(articletest, 5);
-        this.Paniertest.ajouterLigne(testarticleqt);
-        assertTrue(this.Paniertest.getTableau().getRowCount() == 1);
-    }
-
-    @Test
-    public void testSupprimerPanier() {
-
+        this.Paniertest.ajouterArticle(testarticleqt);
+        assertFalse(this.Paniertest.estVide());
     }
 }

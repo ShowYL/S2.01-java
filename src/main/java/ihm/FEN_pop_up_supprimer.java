@@ -90,7 +90,9 @@ public class FEN_pop_up_supprimer {
 				DefaultTableModel model = (DefaultTableModel) Tableau_Panier.getModel();
 				for (int i = model.getRowCount() - 1; i >= 0; i--) {
 					model.removeRow(i);
-					panier.getPanier().get(i).getArticle().setQuantitéEnStock(panier.getPanier().get(i).getQuantite());
+					panier.getPanier().get(i).getArticle()
+							.setQuantitéEnStock(panier.getPanier().get(i).getArticle().getQuantitéEnStock()
+									+ panier.getPanier().get(i).getQuantite());
 				}
 				panier.getPanier().clear();
 				boutonPanier.setText("00,00 €");
