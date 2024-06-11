@@ -33,6 +33,7 @@ public class FEN_Panier {
 	private JFrame frame;
 	private JTable Tableau_Panier;
 	private float calculPrixTotal;
+	private int expediteur;
 
 	/**
 	 * Launch the application.
@@ -132,6 +133,7 @@ public class FEN_Panier {
 				prixTotal.setText(paternPrixTotal + "€");
 			}
 		});
+		this.expediteur = comboBoxTranporteur.getSelectedIndex();
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
 		Bnt_rec_panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		Bnt_rec_panier.setBackground(Constantes.JAUNE);
