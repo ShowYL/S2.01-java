@@ -118,6 +118,21 @@ public class FEN_Panier {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				FEN_Panier.this.expediteur = comboBoxTranporteur.getSelectedIndex();
+				float calculPrixSousTotal = panier.prixPanier();
+				String paternPrixSousTotal = new DecimalFormat("#.00").format(calculPrixSousTotal);
+				PrixSousTot.setText(paternPrixSousTotal + "€");
+				if (calculPrixSousTotal == 0.0F) {
+					PrixSousTot.setText("00,00€");
+				}
+				float calculPrixExpedition = panier.calculerExpedition(comboBoxTranporteur);
+				String paternPrixExpedition = new DecimalFormat("#.00").format(calculPrixExpedition);
+				prixExpedition.setText(paternPrixExpedition + "€");
+				if (calculPrixExpedition == 0.0F) {
+					prixExpedition.setText("00,00€");
+				}
+				FEN_Panier.this.calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+				String paternPrixTotal = new DecimalFormat("#.00").format(FEN_Panier.this.calculPrixTotal);
+				prixTotal.setText(paternPrixTotal + "€");
 			}
 		});
 		JButton Bnt_rec_panier = new JButton("Recalculer mon panier");
