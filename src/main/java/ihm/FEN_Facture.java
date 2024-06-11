@@ -157,7 +157,7 @@ public class FEN_Facture {
 
         JTextArea textArea2 = new JTextArea();
         textArea2.setEditable(false);
-        textArea2.append("\n\nTOTAL TTC Commande : " + panier.prixPanier() + "€ par " + coordonnee.getPayementMethode() + "\n");
+        textArea2.append("\n\nTOTAL TTC Commande : " + new DecimalFormat("#.00").format(panier.prixPanier()) + "€ par " + coordonnee.getPayementMethode() + "\n");
         float fraisTransport = calculPrixTotal - panier.prixPanier();
         if (fraisTransport == 0.0F){
             textArea2.append("FRAIS DE TRANSPORT : 00.00€ par \n");
