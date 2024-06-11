@@ -2,13 +2,13 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.Event;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -114,6 +114,12 @@ public class FEN_Panier {
 		JLabel prixExpedition = new JLabel("");
 		JLabel prixTotal = new JLabel("");
 		JComboBox<ImageIcon> comboBoxTranporteur = new JComboBox<ImageIcon>();
+		comboBoxTranporteur.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				FEN_Panier.this.expediteur = comboBoxTranporteur.getSelectedIndex();
+			}
+		});
 		JButton Bnt_rec_panier = new JButton("Recalculer mon panier");
 		Bnt_rec_panier.addMouseListener(new MouseAdapter() {
 			@Override
@@ -130,12 +136,12 @@ public class FEN_Panier {
 				if (calculPrixExpedition == 0.0F) {
 					prixExpedition.setText("00,00€");
 				}
-				calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
-				String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
+				FEN_Panier.this.calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+				String paternPrixTotal = new DecimalFormat("#.00").format(FEN_Panier.this.calculPrixTotal);
 				prixTotal.setText(paternPrixTotal + "€");
 			}
 		});
-		
+
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
 		Bnt_rec_panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		Bnt_rec_panier.setBackground(Constantes.JAUNE);
@@ -145,11 +151,7 @@ public class FEN_Panier {
 		this.Tableau_Panier = new JTable();
 		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 50));
 		this.Tableau_Panier = new JTable();
-		Tableau_Panier.setModel(new DefaultTableModel(
-				new Object[][] {
-				},
-				new String[] {
-				}));
+		this.Tableau_Panier.setModel(new DefaultTableModel(new Object[][] {}, new String[] {}));
 		this.Tableau_Panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		DefaultTableModel model = (DefaultTableModel) this.Tableau_Panier.getModel();
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
@@ -263,8 +265,9 @@ public class FEN_Panier {
 		Button_ValiderPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (Tableau_Panier.getRowCount() > 0) {
-					FEN_Coordonnee window = new FEN_Coordonnee(panier, calculPrixTotal,expediteur);
+				if (FEN_Panier.this.Tableau_Panier.getRowCount() > 0) {
+					FEN_Coordonnee window = new FEN_Coordonnee(panier, FEN_Panier.this.calculPrixTotal,
+							FEN_Panier.this.expediteur);
 					window.getFrame().setVisible(true);
 				} else {
 					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();
@@ -284,7 +287,7 @@ public class FEN_Panier {
 		btnContinuerLesAchats.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setVisible(false);
+				FEN_Panier.this.frame.setVisible(false);
 			}
 		});
 		panel_BntCont.add(btnContinuerLesAchats);
@@ -294,7 +297,8 @@ public class FEN_Panier {
 		btnViderPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(Tableau_Panier, panier, boutonPanier);
+				FEN_pop_up_supprimer window = new FEN_pop_up_supprimer(FEN_Panier.this.Tableau_Panier, panier,
+						boutonPanier);
 				window.getFrame().setVisible(true);
 			}
 		});
@@ -312,8 +316,8 @@ public class FEN_Panier {
 		if (calculPrixExpedition == 0.0F) {
 			prixExpedition.setText("00,00€");
 		}
-		calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
-		String paternPrixTotal = new DecimalFormat("#.00").format(calculPrixTotal);
+		this.calculPrixTotal = panier.recalculerPanier(comboBoxTranporteur);
+		String paternPrixTotal = new DecimalFormat("#.00").format(this.calculPrixTotal);
 		prixTotal.setText(paternPrixTotal + "€");
 	}
 }
