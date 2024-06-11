@@ -2,12 +2,14 @@ package ihm;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Event;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.text.DecimalFormat;
@@ -133,7 +135,7 @@ public class FEN_Panier {
 				prixTotal.setText(paternPrixTotal + "€");
 			}
 		});
-		this.expediteur = comboBoxTranporteur.getSelectedIndex();
+		
 		Bnt_rec_panier.setHorizontalTextPosition(SwingConstants.CENTER);
 		Bnt_rec_panier.setFont(new Font("Alef", Font.PLAIN, 10));
 		Bnt_rec_panier.setBackground(Constantes.JAUNE);
@@ -262,7 +264,7 @@ public class FEN_Panier {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (Tableau_Panier.getRowCount() > 0) {
-					FEN_Coordonnee window = new FEN_Coordonnee(panier, calculPrixTotal);
+					FEN_Coordonnee window = new FEN_Coordonnee(panier, calculPrixTotal,expediteur);
 					window.getFrame().setVisible(true);
 				} else {
 					FEN_pop_up_panier_vide window = new FEN_pop_up_panier_vide();
