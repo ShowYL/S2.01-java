@@ -101,7 +101,8 @@ public class FEN_Facture {
         btn_print.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Print logic here
+                FEN_Imprimer window = new FEN_Imprimer();
+                window.getFrame().setVisible(true);
             }
         });
         btn_print.setBackground(Constantes.JAUNE);
