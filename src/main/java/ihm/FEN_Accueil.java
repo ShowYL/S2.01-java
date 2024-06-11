@@ -40,6 +40,7 @@ public class FEN_Accueil {
 	private JFrame frame;
 	private Panier panier;
 	private JButton boutonPanier;
+	private ArrayList<String> listefromage;
 
 	/**
 	 * Launch the application.
@@ -66,6 +67,7 @@ public class FEN_Accueil {
 	 * Create the application.
 	 */
 	public FEN_Accueil() {
+		this.listefromage = new ArrayList<>();
 		initialize();
 	}
 
@@ -127,9 +129,8 @@ public class FEN_Accueil {
 
 		GenerationFromages generation = new GenerationFromages();
 		Fromages tousfromages = generation.générationBaseFromages();
-		ArrayList<String> listefromage = new ArrayList<>();
 		for (Fromage f : tousfromages.getFromages()) {
-			listefromage.add(f.getDésignation());
+			this.listefromage.add(f.getDésignation());
 		}
 
 		JList Centre_liste = new JList(listefromage.toArray(new String[0]));
@@ -137,10 +138,11 @@ public class FEN_Accueil {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					int index = Centre_liste.locationToIndex(e.getPoint()); 
-				   	String selectedItem = listefromage.get(index);
-					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem),panier,boutonPanier);
-				   	fenDescription.getFrame().setVisible(true);
+					int index = Centre_liste.locationToIndex(e.getPoint());
+					String selectedItem = listefromage.get(index);
+					FEN_Description fenDescription = new FEN_Description(tousfromages.getFromage(selectedItem), panier,
+							boutonPanier);
+					fenDescription.getFrame().setVisible(true);
 				}
 			}
 		});
@@ -187,8 +189,8 @@ public class FEN_Accueil {
 		boutonPanier.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				FEN_Panier window = new FEN_Panier(panier,boutonPanier);
-				if(panier.estVide()){ 
+				FEN_Panier window = new FEN_Panier(panier, boutonPanier);
+				if (panier.estVide()) {
 					FEN_pop_up_panier_vide panierVide = new FEN_pop_up_panier_vide();
 					panierVide.getFrame().setVisible(true);
 				} else {
@@ -225,6 +227,7 @@ public class FEN_Accueil {
 				}
 
 				Centre_liste.setListData(tabfromage.toArray(new String[0]));
+				listefromage = tabfromage;
 			}
 		});
 	}
