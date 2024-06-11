@@ -36,8 +36,9 @@ public class FEN_Facture {
                 try {
                     Panier panier = new Panier();
                     float calculPrixTotal = 0.0F;
+                    int expediteur = 0;
                     Coordonnee coordonnee = new Coordonnee(null, null, null, null, null, null, null, null, null);
-                    FEN_Facture window = new FEN_Facture(panier, coordonnee, calculPrixTotal);
+                    FEN_Facture window = new FEN_Facture(panier, coordonnee, calculPrixTotal,expediteur);
                     window.frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -49,8 +50,8 @@ public class FEN_Facture {
     /**
      * Create the application.
      */
-    public FEN_Facture(Panier panier, Coordonnee coordonnee, float calculPrixTotal) {
-        initialize(panier, coordonnee, calculPrixTotal);
+    public FEN_Facture(Panier panier, Coordonnee coordonnee, float calculPrixTotal, int expediteur) {
+        initialize(panier, coordonnee, calculPrixTotal,expediteur);
     }
 
     public JFrame getFrame() {
@@ -60,7 +61,7 @@ public class FEN_Facture {
     /**
      * Initialize the contents of the frame.
      */
-    private void initialize(Panier panier, Coordonnee coordonnee, float calculPrixTotal) {
+    private void initialize(Panier panier, Coordonnee coordonnee, float calculPrixTotal, int expediteur) {
         frame = new JFrame();
         frame.setBounds(100, 100, 450, 300);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -100,7 +101,8 @@ public class FEN_Facture {
         btn_print.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // Print logic here
+                FEN_Imprimer window = new FEN_Imprimer();
+                window.getFrame().setVisible(true);
             }
         });
         btn_print.setBackground(Constantes.JAUNE);
@@ -157,9 +159,29 @@ public class FEN_Facture {
 
         JTextArea textArea2 = new JTextArea();
         textArea2.setEditable(false);
-        textArea2.append("\n\nTOTAL TTC Commande : " + panier.prixPanier() + "€ par " + coordonnee.getPayementMethode() + "\n");
+        String expediteurString;
+        System.out.println(expediteur);
+        switch(expediteur){
+            case 0:
+                expediteurString = "Colissimo";
+                break;
+            case 1:
+                expediteurString = "Chronofresh";
+                break;
+            case 2:
+                expediteurString = "Chronorelais";
+                break;
+            default:
+                expediteurString = "Pere Noel";
+                break;
+        }
+        textArea2.append("\n\nTOTAL TTC Commande : " + new DecimalFormat("#.00").format(panier.prixPanier()) + "€ par " + coordonnee.getPayementMethode() + "\n");
         float fraisTransport = calculPrixTotal - panier.prixPanier();
-        textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par " + "\n");
+        if (fraisTransport == 0.0F){
+            textArea2.append("FRAIS DE TRANSPORT : 00.00€ par \n");
+        }else{
+            textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par " + expediteurString + "\n");
+        }
         textArea2.append("PRIX TOTAL TTC : "+calculPrixTotal+"€");
 
         invoicePanel.add(textArea2, BorderLayout.SOUTH);

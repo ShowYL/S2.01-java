@@ -41,6 +41,10 @@ public class FEN_Imprimer {
 		initialize();
 	}
 
+	public JFrame getFrame(){
+		return this.frame;
+	}
+
 	/**
 	 * Initialize the contents of the frame.
 	 */
