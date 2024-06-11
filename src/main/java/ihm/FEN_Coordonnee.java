@@ -157,7 +157,7 @@ public class FEN_Coordonnee {
 		JRadioButton rdbtnNewRadioButton2 = new JRadioButton("Paypal                       ");
 		rdbtnNewRadioButton2.setBackground(Constantes.BLANC);
 		JLabel imagePaypal = new JLabel(icon3);
-		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+		rdbtnNewRadioButton2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 				payementMethode = "Paypal";
@@ -175,7 +175,7 @@ public class FEN_Coordonnee {
 		JRadioButton rdbtnNewRadioButton3 = new JRadioButton("Payement par chèque");
 		rdbtnNewRadioButton3.setBackground(Constantes.BLANC);
 		JLabel imageCheque = new JLabel(icon4);
-		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
+		rdbtnNewRadioButton3.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e){
 				payementMethode = "Payement par chèque";
