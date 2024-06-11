@@ -154,16 +154,15 @@ public class FEN_Facture {
 
         invoicePanel.add(panierJTable, BorderLayout.CENTER);
 
-        // JTextArea for total amount at the bottom
         JTextArea textArea2 = new JTextArea();
         textArea2.setEditable(false);
-        textArea2.append("\n\nTOTAL TTC Commande : " + panier.prixPanier() + " par " + coordonnee.getPayementMethode() + "\n");
+        textArea2.append("\n\nTOTAL TTC Commande : " + panier.prixPanier() + "€ par " + coordonnee.getPayementMethode() + "\n");
         float fraisTransport = calculPrixTotal - panier.prixPanier();
-        textArea2.append("FRAIS DE TRANSPORT : " + fraisTransport + " par " + coordonnee.getPayementMethode() + "\n");
+        textArea2.append("FRAIS DE TRANSPORT : " + fraisTransport + "€ par " + coordonnee.getPayementMethode() + "\n");
+        textArea2.append("PRIX TOTAL TTC : "+calculPrixTotal+"€");
 
         invoicePanel.add(textArea2, BorderLayout.SOUTH);
 
-        // Add the invoice panel to a scroll pane
         JScrollPane scrollPane = new JScrollPane(invoicePanel);
         panelCentre.add(scrollPane, BorderLayout.CENTER);
 
