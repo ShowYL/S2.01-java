@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -158,7 +159,7 @@ public class FEN_Facture {
         textArea2.setEditable(false);
         textArea2.append("\n\nTOTAL TTC Commande : " + panier.prixPanier() + "€ par " + coordonnee.getPayementMethode() + "\n");
         float fraisTransport = calculPrixTotal - panier.prixPanier();
-        textArea2.append("FRAIS DE TRANSPORT : " + fraisTransport + "€ par " + "\n");
+        textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par " + "\n");
         textArea2.append("PRIX TOTAL TTC : "+calculPrixTotal+"€");
 
         invoicePanel.add(textArea2, BorderLayout.SOUTH);
