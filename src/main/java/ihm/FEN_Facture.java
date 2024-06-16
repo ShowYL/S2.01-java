@@ -182,7 +182,7 @@ public class FEN_Facture {
         }else{
             textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par " + expediteurString + "\n");
         }
-        textArea2.append("PRIX TOTAL TTC : "+calculPrixTotal+"€");
+        textArea2.append("PRIX TOTAL TTC : "+new DecimalFormat("#.00").format(calculPrixTotal)+"€");
 
         invoicePanel.add(textArea2, BorderLayout.SOUTH);
 

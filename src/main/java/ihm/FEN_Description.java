@@ -9,6 +9,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,9 +30,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 import modele.Article;
+import modele.ArticleEtQuantite;
 import modele.Fromage;
 import modele.Panier;
-import modele.ArticleEtQuantite;
 
 public class FEN_Description {
 
@@ -207,7 +208,9 @@ public class FEN_Description {
 							(int) quantite.getValue());
 					panier.ajouterArticle(article);
 				}
-				boutonPanier.setText(panier.prixPanier() + " €");
+				float prixDuPanier = panier.prixPanier() ;
+				String prixAAfficher = new DecimalFormat("#.00").format(prixDuPanier);
+				boutonPanier.setText(prixAAfficher + " €");
 				frame.dispose();
 			}
 		});
