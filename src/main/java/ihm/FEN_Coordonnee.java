@@ -3,16 +3,6 @@ package ihm;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import modele.Coordonnee;
-
-import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
-
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -20,11 +10,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
+import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
-import javax.swing.JRadioButton;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
+import modele.Coordonnee;
 import modele.Panier;
 
 public class FEN_Coordonnee {
@@ -37,12 +33,13 @@ public class FEN_Coordonnee {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					Panier panier = new Panier();
 					float calculPrixTotal = 0.0F;
 					int expediteur = 0;
-					FEN_Coordonnee window = new FEN_Coordonnee(panier,calculPrixTotal,expediteur);
+					FEN_Coordonnee window = new FEN_Coordonnee(panier, calculPrixTotal, expediteur);
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +52,7 @@ public class FEN_Coordonnee {
 	 * Create the application.
 	 */
 	public FEN_Coordonnee(Panier panier, float calculPrixTotal, int expediteur) {
-		initialize(panier,calculPrixTotal,expediteur);
+		this.initialize(panier, calculPrixTotal, expediteur);
 	}
 
 	public JFrame getFrame() {
@@ -66,14 +63,14 @@ public class FEN_Coordonnee {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize(Panier panier, float calculPrixTotal, int expediteur) {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.frame = new JFrame();
+		this.frame.setBounds(100, 100, 450, 300);
+		this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panelNord = new JPanel();
 		panelNord.setBackground(Constantes.NOIR);
-		frame.getContentPane().add(panelNord, BorderLayout.NORTH);
+		this.frame.getContentPane().add(panelNord, BorderLayout.NORTH);
 
 		JLabel lblNewLabel = new JLabel("Vos Coordonnées");
 
@@ -81,8 +78,8 @@ public class FEN_Coordonnee {
 
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
 		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
-		frame.setSize((int) (largueur / 0.7 * 0.5), hauteur);
-		frame.setLocationRelativeTo(null);
+		this.frame.setSize((int) (largueur / 0.7 * 0.5), hauteur);
+		this.frame.setLocationRelativeTo(null);
 
 		ImageIcon icon = new ImageIcon("src\\main\\resources\\images\\icons\\Coordonnee.png");
 		Image img = icon.getImage();
@@ -93,28 +90,28 @@ public class FEN_Coordonnee {
 		panelNord.add(lblNewLabel);
 
 		JPanel panelCentre = new JPanel();
-		frame.getContentPane().add(panelCentre, BorderLayout.CENTER);
+		this.frame.getContentPane().add(panelCentre, BorderLayout.CENTER);
 		panelCentre.setLayout(new BorderLayout(0, 0));
 
 		JPanel panelCentreOuest = new JPanel(new GridLayout(8, 2));
 		panelCentre.add(panelCentreOuest, BorderLayout.WEST);
 
-		String[] labels = { "Nom : ", "Prénom : ", "Adresse 1 : ", "Adresse 2 : ", "Code Postal : ", "Ville ; ", "Téléphone : ", "Mail : " };
+		String[] labels = { "Nom : ", "Prénom : ", "Adresse 1 : ", "Adresse 2 : ", "Code Postal : ", "Ville ; ",
+				"Téléphone : ", "Mail : " };
 
 		ArrayList<JTextField> textFields = new ArrayList<>();
-		
+
 		for (int i = 0; i < 8; i++) {
 			JLabel label = new JLabel(labels[i]);
 			label.setHorizontalAlignment(JLabel.RIGHT);
 			JTextField textField = new JTextField();
 			textField.setPreferredSize(new Dimension(150, 0));
-		
+
 			textFields.add(textField);
-		
+
 			panelCentreOuest.add(label);
 			panelCentreOuest.add(textField);
 		}
-		
 
 		JPanel panelCentreEst = new JPanel();
 		panelCentre.add(panelCentreEst, BorderLayout.EAST);
@@ -138,12 +135,14 @@ public class FEN_Coordonnee {
 		Image resizedImage2 = img2.getScaledInstance(largueur / 9, hauteur / 9, java.awt.Image.SCALE_SMOOTH);
 		icon2 = new ImageIcon(resizedImage2);
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("Carte de crédit           ");
+		rdbtnNewRadioButton.setSelected(true);
 		rdbtnNewRadioButton.setBackground(Constantes.BLANC);
 		JLabel imageCB = new JLabel(icon2);
+		FEN_Coordonnee.this.payementMethode = "Carte de crédit";
 		rdbtnNewRadioButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				payementMethode = "Carte de crédit";
+			public void mouseClicked(MouseEvent e) {
+				FEN_Coordonnee.this.payementMethode = "Carte de crédit";
 			}
 		});
 		panelCB.add(rdbtnNewRadioButton);
@@ -160,8 +159,8 @@ public class FEN_Coordonnee {
 		JLabel imagePaypal = new JLabel(icon3);
 		rdbtnNewRadioButton2.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				payementMethode = "Paypal";
+			public void mouseClicked(MouseEvent e) {
+				FEN_Coordonnee.this.payementMethode = "Paypal";
 			}
 		});
 		panelPaypal.add(rdbtnNewRadioButton2);
@@ -178,8 +177,8 @@ public class FEN_Coordonnee {
 		JLabel imageCheque = new JLabel(icon4);
 		rdbtnNewRadioButton3.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				payementMethode = "Payement par chèque";
+			public void mouseClicked(MouseEvent e) {
+				FEN_Coordonnee.this.payementMethode = "Payement par chèque";
 			}
 		});
 		panelCheque.add(rdbtnNewRadioButton3);
@@ -215,7 +214,7 @@ public class FEN_Coordonnee {
 
 		JPanel panelSud = new JPanel();
 		panelSud.setBackground(Constantes.NOIR);
-		frame.getContentPane().add(panelSud, BorderLayout.SOUTH);
+		this.frame.getContentPane().add(panelSud, BorderLayout.SOUTH);
 		panelSud.setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
@@ -227,9 +226,12 @@ public class FEN_Coordonnee {
 		panel.add(btnNewButton);
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				Coordonnee coordonnee = new Coordonnee(textFields.get(1).getText(), textFields.get(0).getText(), textFields.get(2).getText(), textFields.get(3).getText(), textFields.get(4).getText(), textFields.get(5).getText(), textFields.get(7).getText(), payementMethode, textFields.get(6).getText());
-				FEN_Facture window = new FEN_Facture(panier,coordonnee,calculPrixTotal,expediteur);
+			public void mouseClicked(MouseEvent e) {
+				Coordonnee coordonnee = new Coordonnee(textFields.get(1).getText(), textFields.get(0).getText(),
+						textFields.get(2).getText(), textFields.get(3).getText(), textFields.get(4).getText(),
+						textFields.get(5).getText(), textFields.get(7).getText(), FEN_Coordonnee.this.payementMethode,
+						textFields.get(6).getText());
+				FEN_Facture window = new FEN_Facture(panier, coordonnee, calculPrixTotal, expediteur);
 				window.getFrame().setVisible(true);
 			}
 		});
@@ -239,15 +241,15 @@ public class FEN_Coordonnee {
 		panel.add(btnNewButton_1);
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				frame.setVisible(false);
+			public void mouseClicked(MouseEvent e) {
+				FEN_Coordonnee.this.frame.setVisible(false);
 			}
 		});
 
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setVisible(false);
+				FEN_Coordonnee.this.frame.setVisible(false);
 			}
 		});
 

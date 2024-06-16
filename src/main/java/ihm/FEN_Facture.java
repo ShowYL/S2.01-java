@@ -175,16 +175,16 @@ public class FEN_Facture {
 			expediteurString = "Pere Noel";
 			break;
 		}
-		textArea2.append("\n\nTOTAL TTC Commande : " + new DecimalFormat("#.00").format(panier.prixPanier()) + "€ par "
-				+ coordonnee.getPayementMethode() + "\n");
+		textArea2.append("\n\nTOTAL TTC Commande : " + new DecimalFormat("#.00").format(panier.prixPanier()) + "€ \n");
 		float fraisTransport = calculPrixTotal - panier.prixPanier();
 		if (fraisTransport == 0.0F) {
-			textArea2.append("FRAIS DE TRANSPORT : 00.00€ par \n");
+			textArea2.append("FRAIS DE TRANSPORT : 00.00€ par" + expediteurString + "\n");
 		} else {
 			textArea2.append("FRAIS DE TRANSPORT : " + new DecimalFormat("#.00").format(fraisTransport) + "€ par "
 					+ expediteurString + "\n");
 		}
-		textArea2.append("PRIX TOTAL TTC : " + new DecimalFormat("#.00").format(calculPrixTotal) + "€");
+		textArea2.append("PRIX TOTAL TTC : " + new DecimalFormat("#.00").format(calculPrixTotal) + "€ par "
+				+ coordonnee.getPayementMethode());
 
 		invoicePanel.add(textArea2, BorderLayout.SOUTH);
 
