@@ -56,6 +56,7 @@ public class FEN_Imprimer {
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	private void initialize() {
 		this.frame = new JFrame();
 		this.frame.setBounds(100, 100, 450, 300);
@@ -100,6 +101,7 @@ public class FEN_Imprimer {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel_1.add(lblNewLabel);
 
+		@SuppressWarnings("rawtypes")
 		JComboBox comboBox = new JComboBox();
 		comboBox.addItem("Imprimante 1");
 		comboBox.addItem("Imprimante 2");

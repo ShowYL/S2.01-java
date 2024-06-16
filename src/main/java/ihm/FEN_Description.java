@@ -66,6 +66,7 @@ public class FEN_Description {
 		return this.frame;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void initialize(Fromage fromage, Panier panier, JButton boutonPanier) {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
@@ -208,7 +209,7 @@ public class FEN_Description {
 							(int) quantite.getValue());
 					panier.ajouterArticle(article);
 				}
-				float prixDuPanier = panier.prixPanier() ;
+				float prixDuPanier = panier.prixPanier();
 				String prixAAfficher = new DecimalFormat("#.00").format(prixDuPanier);
 				boutonPanier.setText(prixAAfficher + " €");
 				frame.dispose();

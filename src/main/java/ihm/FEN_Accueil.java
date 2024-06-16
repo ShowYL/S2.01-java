@@ -128,6 +128,7 @@ public class FEN_Accueil {
 		Bouton_quitter_boite.add(Quitter_Button);
 
 		GenerationFromages generation = new GenerationFromages();
+		@SuppressWarnings("static-access")
 		Fromages tousfromages = generation.générationBaseFromages();
 		for (Fromage f : tousfromages.getFromages()) {
 			this.listefromage.add(f.getDésignation());
@@ -205,6 +206,7 @@ public class FEN_Accueil {
 			public void itemStateChanged(ItemEvent e) {
 				int i = Choix_lait.getSelectedIndex();
 				GenerationFromages generation = new GenerationFromages();
+				@SuppressWarnings("static-access")
 				Fromages tousfromages = generation.générationBaseFromages();
 				List<Fromage> listefromages = new LinkedList<Fromage>();
 				switch (i) {

@@ -26,9 +26,6 @@ public class Fromage implements Comparable<Fromage> {
 
 	public String getDescription() {
 		assert !(this.description == null);
-		if (this.description == null) {
-			return "Pas de description de ce fromage pour le moment. Nous en sommes désolés";
-		}
 		return this.description;
 	}
 

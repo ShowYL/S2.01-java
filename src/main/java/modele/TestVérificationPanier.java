@@ -34,6 +34,7 @@ public class TestVérificationPanier {
         assertFalse(this.Paniertest.estVide());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void testCalculPrixTotal() {
         Fromage fromagetest = new Fromage("Fromage de brebis");
