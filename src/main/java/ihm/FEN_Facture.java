@@ -149,7 +149,7 @@ public class FEN_Facture {
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
 		for (int i = 0; i < panier.getSize(); i++) {
 			model.addRow(new Object[] { panier.getPanier().get(i).getArticle().getFromage().getNomImage(),
-					-panier.getPanier().get(i).getArticle().getClé()
+					panier.getPanier().get(i).getArticle().getClé()
 							+ "-" + panier.getPanier().get(i).getArticle().getFromage().getDésignation(),
 					panier.getPanier().get(i).getArticle().getPrixTTC() + "€", panier.getPanier().get(i).getQuantite(),
 					new DecimalFormat("#.00").format(panier.getPanier().get(i).getArticle().getPrixTTC()
