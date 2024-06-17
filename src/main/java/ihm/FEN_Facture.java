@@ -149,7 +149,8 @@ public class FEN_Facture {
 		model.setColumnIdentifiers(new String[] { "Image", "Produit", "Prix", "Quantit\u00E9", "Total" });
 		for (int i = 0; i < panier.getSize(); i++) {
 			model.addRow(new Object[] { panier.getPanier().get(i).getArticle().getFromage().getNomImage(),
-					panier.getPanier().get(i).getArticle().getFromage().getDésignation(),
+					-panier.getPanier().get(i).getArticle().getClé()
+							+ "-" + panier.getPanier().get(i).getArticle().getFromage().getDésignation(),
 					panier.getPanier().get(i).getArticle().getPrixTTC() + "€", panier.getPanier().get(i).getQuantite(),
 					new DecimalFormat("#.00").format(panier.getPanier().get(i).getArticle().getPrixTTC()
 							* panier.getPanier().get(i).getQuantite()) + "€" });
@@ -162,18 +163,18 @@ public class FEN_Facture {
 		String expediteurString;
 		System.out.println(expediteur);
 		switch (expediteur) {
-		case 0:
-			expediteurString = "Colissimo";
-			break;
-		case 1:
-			expediteurString = "Chronofresh";
-			break;
-		case 2:
-			expediteurString = "Chronorelais";
-			break;
-		default:
-			expediteurString = "Pere Noel";
-			break;
+			case 0:
+				expediteurString = "Colissimo";
+				break;
+			case 1:
+				expediteurString = "Chronofresh";
+				break;
+			case 2:
+				expediteurString = "Chronorelais";
+				break;
+			default:
+				expediteurString = "Pere Noel";
+				break;
 		}
 		textArea2.append("\n\nTOTAL TTC Commande : " + new DecimalFormat("#.00").format(panier.prixPanier()) + "€ \n");
 		float fraisTransport = calculPrixTotal - panier.prixPanier();
