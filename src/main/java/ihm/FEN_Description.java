@@ -172,12 +172,7 @@ public class FEN_Description {
 		}
 
 		JComboBox prix = new JComboBox();
-		prix.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
 
-			}
-		});
 		prix.setBorder(new LineBorder(Constantes.JAUNE, 3));
 		prix.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		prix.setModel(new DefaultComboBoxModel(listeaffichageprix.toArray(new String[0])));
@@ -192,7 +187,12 @@ public class FEN_Description {
 		JSpinner quantite = new JSpinner();
 		quantite.setModel(new SpinnerNumberModel(0, 0, (int) listequantité[prix.getSelectedIndex()], 1));
 		panel_prix.add(quantite);
-
+		prix.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				quantite.setModel(new SpinnerNumberModel(0, 0, (int) listequantité[prix.getSelectedIndex()], 1));
+			}
+		});
 		JPanel panel_validation_annulation = new JPanel();
 		panel_validation_annulation.setBackground(Constantes.NOIR);
 		panel_footer.add(panel_validation_annulation);
