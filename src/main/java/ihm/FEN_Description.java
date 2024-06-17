@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +61,7 @@ public class FEN_Description {
 	 * Create the frame.
 	 */
 	public FEN_Description(Fromage fromage, Panier panier, JButton boutonPanier) {
-		initialize(fromage, panier, boutonPanier);
+		this.initialize(fromage, panier, boutonPanier);
 	}
 
 	public JFrame getFrame() {
@@ -72,19 +74,19 @@ public class FEN_Description {
 		int hauteur = (int) (screenSize.height * 0.7); // 70% de la hauteur de l'écran
 		int largueur = (int) (screenSize.width * 0.7); // 70% de la largueur de l'écran
 
-		frame = new JFrame();
-		frame.setBounds(100, 100, 685, 407);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
-		frame.setSize(815, 421);
-		frame.setLocationRelativeTo(null);
-		frame.setBackground(Constantes.NOIR);
-		frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.frame = new JFrame();
+		this.frame.setBounds(100, 100, 685, 407);
+		this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.frame.getContentPane().setLayout(new BorderLayout(0, 0));
+		this.frame.setSize(815, 421);
+		this.frame.setLocationRelativeTo(null);
+		this.frame.setBackground(Constantes.NOIR);
+		this.frame.getContentPane().setLayout(new BorderLayout(0, 0));
 
 		JPanel panel = new JPanel();
 		panel.setBackground(Constantes.NOIR);
 		panel.setForeground(Constantes.NOIR);
-		frame.getContentPane().add(panel, BorderLayout.NORTH);
+		this.frame.getContentPane().add(panel, BorderLayout.NORTH);
 
 		JLabel frommage_logo = new JLabel("");
 
@@ -105,7 +107,7 @@ public class FEN_Description {
 
 		JPanel panel_fromage = new JPanel();
 		panel_fromage.setBackground(Constantes.GRIS_CLAIR);
-		frame.getContentPane().add(panel_fromage, BorderLayout.CENTER);
+		this.frame.getContentPane().add(panel_fromage, BorderLayout.CENTER);
 		panel_fromage.setLayout(new GridLayout(0, 2, 0, 0));
 
 		JLabel photo = new JLabel("");
@@ -142,7 +144,7 @@ public class FEN_Description {
 
 		JPanel panel_footer = new JPanel();
 		panel_footer.setBackground(Constantes.NOIR);
-		frame.getContentPane().add(panel_footer, BorderLayout.SOUTH);
+		this.frame.getContentPane().add(panel_footer, BorderLayout.SOUTH);
 		panel_footer.setLayout(new GridLayout(1, 2, 0, 0));
 
 		JPanel panel_prix = new JPanel();
@@ -170,6 +172,12 @@ public class FEN_Description {
 		}
 
 		JComboBox prix = new JComboBox();
+		prix.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+
+			}
+		});
 		prix.setBorder(new LineBorder(Constantes.JAUNE, 3));
 		prix.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		prix.setModel(new DefaultComboBoxModel(listeaffichageprix.toArray(new String[0])));
@@ -214,7 +222,7 @@ public class FEN_Description {
 				float prixDuPanier = panier.prixPanier();
 				String prixAAfficher = new DecimalFormat("#.00").format(prixDuPanier);
 				boutonPanier.setText(prixAAfficher + " €");
-				frame.dispose();
+				FEN_Description.this.frame.dispose();
 			}
 		});
 		btn_add.setBackground(Constantes.VERT);
@@ -225,7 +233,7 @@ public class FEN_Description {
 		btn_cancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				FEN_Description.this.frame.dispose();
 			}
 		});
 		btn_cancel.setFont(new Font("Tahoma", Font.PLAIN, 17));
