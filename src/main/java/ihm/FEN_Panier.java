@@ -174,7 +174,8 @@ public class FEN_Panier {
 		for (int i = 0; i < panier.getSize(); i++) {
 			DefaultTableModel modele = (DefaultTableModel) this.Tableau_Panier.getModel();
 			modele.addRow(new Object[] { panier.getPanier().get(i).getArticle().getFromage().getNomImage(),
-					panier.getPanier().get(i).getArticle().getFromage().getDésignation(),
+					panier.getPanier().get(i).getArticle().getClé()
+							+ "-" + panier.getPanier().get(i).getArticle().getFromage().getDésignation(),
 					panier.getPanier().get(i).getArticle().getPrixTTC(), panier.getPanier().get(i).getQuantite(),
 					new DecimalFormat("#.00").format(panier.getPanier().get(i).getArticle().getPrixTTC()
 							* panier.getPanier().get(i).getQuantite()) });

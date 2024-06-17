@@ -198,7 +198,9 @@ public class FEN_Description {
 
 				for (int i = 0; i < panier.getSize(); i++) {
 					if (panier.getPanier().get(i).getArticle().getFromage().getDésignation() == articles
-							.get(prix.getSelectedIndex()).getFromage().getDésignation()) {
+							.get(prix.getSelectedIndex()).getFromage().getDésignation()
+							&& panier.getPanier().get(i).getArticle().getClé() == articles.get(prix.getSelectedIndex())
+									.getClé()) {
 						panier.getPanier().get(i)
 								.changerQuantite(panier.getPanier().get(i).getQuantite() + (int) quantite.getValue());
 						b = true;
